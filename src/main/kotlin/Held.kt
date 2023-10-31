@@ -1,4 +1,5 @@
-open class Held(var name: String, var hp: Int, var weapon: String, var atk: Int, var stealth: Boolean) {
+open class Held(var name: String, var hp: Int, var weapon: String, var atk: Int, var stealth: Boolean,var shild: Boolean) {
+
 
     open fun beutel(beutel: Beutel) {
         println("Dein Held greift in den beutel, was soll er benutzen ? :")

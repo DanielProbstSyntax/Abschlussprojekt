@@ -1,21 +1,34 @@
 import Böse.Drache
 import Böse.Endboss
 
-class Krieger(name: String, hp: Int, weapon: String, atk: Int, crit:Boolean, shild: Boolean = true, stealth:Boolean):Held(name,hp,weapon,atk,stealth,) {
+open class Krieger(name: String, hp: Int, weapon: String, atk: Int, crit:Boolean,shild: Boolean, stealth:Boolean):Held(name,hp,weapon,atk,stealth,shild) {
+    override fun toString(): String {
+        return "$name: $hp HP"
+    }
 
-    fun shildblock(drache: Drache){
-        var schadenBlocken = drache.schaden
+    fun shildblock(){
+        println("$name hebt sein Schild um den nächsten Angriff zu Blocken")
+        shild = true
+
+
+
 
 
     }
-    fun headbutt(){
+    fun headbutt(endboss: Endboss){
+        var schaden = (30..60).random()+atk
+        println("$name holt zu einem Brutalen Schlag aus")
+        Thread.sleep(500)
+        println("BÄÄÄÄÄM")
+        endboss.hp -= schaden
+        println("${endboss.name} wurden $schaden HP abgezogen")
+        println("Er hat jetzt noch ${endboss.hp}")
 
 
     }
 
     fun brutalSmash(endboss: Endboss){
         var schaden = (30..60).random()+atk
-
         println("$name holt zu einem Brutalen Schlag aus")
         Thread.sleep(500)
         println("BÄÄÄÄÄM")
