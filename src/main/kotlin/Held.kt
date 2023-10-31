@@ -18,7 +18,7 @@ open class Held(var name: String, var hp: Int, var weapon: String, var atk: Int,
             println("$name hat einen Heiltrank benutzt und hat jetzt $hp Lebenspunkte")
 
         } else if (input == 2) {
-            atk += 20
+            atk += 50
             println("$name hat einen Angriffskraft-Trank benutzt und hat jetzt $atk Angriffskraft")
         }
 
