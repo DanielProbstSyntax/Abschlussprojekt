@@ -5,7 +5,7 @@ class Magier(name: String,hp: Int,weapon: String,atk: Int,stealth:Boolean,shild:
 
     fun heal(team: MutableList<Held>){
         println("$name kanalisiert ihre Macht und will jemanden Heilen")
-        var targetHeal = select(team)
+        var targetHeal = select(team) // <----- NOCHMAL ABCHECKEN, WICHTIG FÜR SPÄTER
         targetHeal.hp+=20
         println("${targetHeal.name} wurde um 20 geheilt")
         println("Er hat jetzt ${targetHeal.hp} Lebenspunkte")
