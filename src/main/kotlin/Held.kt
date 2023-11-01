@@ -15,7 +15,7 @@ open class Held(var name: String, var hp: Int, var weapon: String, var atk: Int,
             2 -> beutel.buffAtk -= 1
         }
         if (input == 1) {
-            hp += 20
+            hp += 40
             println("$name hat einen Heiltrank benutzt und hat jetzt $hp Lebenspunkte")
 
         } else if (input == 2) {

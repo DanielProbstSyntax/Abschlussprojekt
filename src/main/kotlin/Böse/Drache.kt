@@ -6,6 +6,7 @@ import Krieger
 class Drache(name: String, hp: Int, override var atk: Int, weapon: String,headbutt:Boolean) : Endboss(name, hp, atk, weapon,headbutt) {
 
 
+
     fun spikeShot(helden: MutableList<Held>) {
         val held=helden.random()
         if (!held.shild) {
@@ -43,5 +44,6 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String,headbu
 
 
     }
+
 
 }
