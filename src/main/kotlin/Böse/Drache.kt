@@ -3,7 +3,7 @@ package Böse
 import Held
 import Krieger
 
-class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headbutt:Boolean,) : Endboss(name, hp, atk, weapon,headbutt) {
+class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headbutt:Boolean) : Endboss(name, hp, atk, weapon,headbutt) {
     var minion = 1
 
 
@@ -15,6 +15,10 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
     fun spikeShot(helden: MutableList<Held>) {
         val held=helden.random()
+//        if (held.ausweichen){
+//            dodgeAttack()
+//
+//        }
         if (!held.shild) {
 
             val schaden = (20..30).random() + atk
@@ -95,8 +99,8 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         }
 
     }
-    fun minion(boese: MutableList<Endboss>){ // BSTIMMT FALSCH
-        var helfer = boese[1]
+    fun minion(boese: MutableList<Endboss>){ // BTIMMT FALSCH
+        var helfer = boese.filterIsInstance<Helfer>().first()
         if (minion > 0){
         println("$name hat seinen Helfer beschworen")
             minion = 0

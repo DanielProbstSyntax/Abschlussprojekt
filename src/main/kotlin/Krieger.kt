@@ -2,8 +2,8 @@ import Böse.Drache
 import Böse.Endboss
 import kotlin.random.Random
 
-open class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: Int, shild: Boolean, stealth: Boolean) :
-    Held(name, hp, weapon, atk, stealth, shild) {
+open class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: Int,shild: Boolean,stealth:Boolean,ausweichen:Boolean) :
+    Held(name,hp,weapon,atk,shild,stealth,ausweichen) {
         var battleShout = 1
 
     override fun toString(): String {
@@ -62,8 +62,5 @@ open class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: In
 
     }
 
-//    fun beutel(beutel:Beutel){
-//
-//
-//    }
+
 }
