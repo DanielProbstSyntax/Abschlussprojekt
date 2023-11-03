@@ -19,11 +19,7 @@ fun select(team: MutableList<Held>): Held {
     var input = readln().toInt()
 
     when (input) {
-        1 -> {
-            team[0]
-            println("Krieger wurde gewält")
-        }
-
+        1 -> team[0]
         2 -> team[1]
         3 -> team[2]
 

@@ -4,7 +4,7 @@ import Beutel
 import Held
 import kotlin.random.Random
 
-class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean, var alive: Boolean = false) :
+class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean) :
     Endboss(name, hp, atk, weapon, headbutt) {
     var heal = 1
 

@@ -30,24 +30,27 @@ class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: Int,shi
 
     }
 
-    fun brutalSmash(boese: MutableList<Endboss>) {
-        val drache=boese.first // <---- NOCHMAL ABCHECKEN
+    fun brutalSmash(endboss: Endboss) {
+        //val drache=boese.first // <---- NOCHMAL ABCHECKEN
         val criticalHit = Random.nextInt(1, 101) <= crit
         var schaden = (30..60).random() + atk
         if (criticalHit) {
             println("$name macht einen Kritischen Treffer mit seinen Brutalen Schlag")
+            Thread.sleep(1000)
             println("BÄäÄääÄääÄÄÄÄM")
+            Thread.sleep(1000)
             schaden *= 2
-            drache.hp -= schaden
-            println("${drache.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${drache.hp}")
+            endboss.hp -= schaden
+            println("${endboss.name} wurden $schaden HP abgezogen")
+            Thread.sleep(1000)
+            println("Er hat jetzt noch ${endboss.hp}")
         } else {
             println("$name holt zu einem Brutalen Schlag aus")
             Thread.sleep(500)
             println("BÄÄÄÄÄM")
-            drache.hp -= schaden
-            println("${drache.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${drache.hp}")
+            endboss.hp -= schaden
+            println("${endboss.name} wurden $schaden HP abgezogen")
+            println("Er hat jetzt noch ${endboss.hp}")
         }
     }
 
@@ -62,18 +65,26 @@ class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: Int,shi
 
     }
     fun angriffe(endboss:Endboss){
-
-        println("1 für ShildBlock")
-        println("1 für ShildBlock")
-        println("1 für ShildBlock")
-        println("1 für ShildBlock")
-        println("1 für ShildBlock")
+        println("$name ist jetzt dran")
+        Thread.sleep(500)
+        println("Wähle eine Aktion")
+        Thread.sleep(500)
+        println("1 für Schild-Block")
+        Thread.sleep(500)
+        println("2 für Kopfnuss")
+        Thread.sleep(500)
+        println("3 für Brutaler Schlag")
+        Thread.sleep(500)
+        println("4 für Kampfschrei")
+        Thread.sleep(500)
         var x = readln().toInt()
-        when(x){
-            1 -> shildblock(endboss)
-        }
+        when(x) {
+            1 -> shildblock()
             2 -> headbutt(endboss)
+            3 -> brutalSmash(endboss)
+            //4 -> battleShout()
 
+        }
 
     }
 

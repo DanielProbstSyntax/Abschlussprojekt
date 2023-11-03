@@ -7,12 +7,12 @@ fun main() {
     var magier = Magier("Selina", 100, "Zauberstab", 0, false, 0, false, false)
     var schurke = Schurke("Schlitzohr", 150, "Dolch", 0, false, 50, false, false)
     val alleHelden: MutableList<Held> = mutableListOf(
-        krieger,magier,schurke
+        krieger, magier, schurke
         //Krieger("Hugo", 200, "Axt", 0, crit = 50, false, false, false),
         //Magier("Selina", 100, "Zauberstab", 0, false, 0, false, false),
         //Schurke("Schlitzohr", 150, "Dolch", 0, false, 50, false, false)
     )
-    var drache = Drache("Dämon Infernothor", 1000, 0, "Dämonen Schwert", false)
+    var drache = Drache("Dämon Infernothor", 1000, 100, "Dämonen Schwert", false)
     val alleBoesen: MutableList<Endboss> = mutableListOf(
         drache,
         //Drache("Dämon Infernothor", 1000, 0, "Dämonen Schwert", false),
@@ -34,7 +34,7 @@ fun main() {
 
     when (input) {
         1 -> {
-            println("Spiel wird gestartet, wer soll den ersten Angriff ausführen ?")
+            println("Spiel wird gestartet.")
         }
 
         2 -> {
@@ -51,59 +51,50 @@ fun main() {
             println("-----")
             println("Drücke 1 um das Spiel zu starten")
             var input2 = readln().toInt()
-            if (input2 == 1){
+            if (input2 == 1) {
                 input = 1
             }
 
         }
     }
 
-    if (input == 1){
+    if (input == 1) {
         var runde = 1
 
 
-        while (true){
+        while (true) {
             println("Das Spiel hat begonnen. Runde: $runde")
             krieger.angriffe(drache)
+            magier.angriffe(drache, alleHelden, alleBoesen)
+            schurke.angriffe(drache)
+            drache.angriff(alleHelden)
+
+            if (krieger.hp == 0){
+                alleHelden.removeAt(0)
+            }else if (magier.hp == 0){
+                alleHelden.removeAt(1)
+            }else if (schurke.hp == 0){
+                alleHelden.removeAt(2)
+            }
 
 
+
+
+            if (alleHelden.all { it.hp == 0 }) {
+                println("Der Drache hat gewonnen!")
+                break
+            } else if (drache.hp <= 0) {
+                println("Die Helden haben gewonnen!")
+                break
+            }
+            runde++
         }
+
 
     }
 
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    var krieger = Krieger("Hugo", 200, "Axt", 0, crit = false, shild = false, stealth = false)
-//    var magier = Magier("Selina", 100, "Zauberstab", 0, false, false)
-//    var schurke = Schurke("Schlitzohr", 100, "Dolch", 0, false, false)
-//    var drache = Drache("Infernothor", 1000, 100, "Dämonen Schwert", false)
-
-
-
-
-
 
 
 //    krieger.brutalSmash(drache)
@@ -111,14 +102,14 @@ fun main() {
 
 //    var beutel = Beutel()
 //    println(beutel)
-    //val beutel = Beutel()
-    //stats(alleHelden,alleBoesen)
-    //alleHelden.filterIsInstance<Schurke>().first.dodge()
-    //alleBoesen.filterIsInstance<Drache>().first.spikeShot(alleHelden)
-    //beutel.statusBeutel()
+//val beutel = Beutel()
+//stats(alleHelden,alleBoesen)
+//alleHelden.filterIsInstance<Schurke>().first.dodge()
+//alleBoesen.filterIsInstance<Drache>().first.spikeShot(alleHelden)
+//beutel.statusBeutel()
 
-   // println(beutel)
-    //alleBoesen.filterIsInstance<Helfer>().last.punsh(alleHelden)
+// println(beutel)
+//alleBoesen.filterIsInstance<Helfer>().last.punsh(alleHelden)
 
 
 //   println( alleHelden.filterIsInstance<Krieger>().first.maxHp)
@@ -127,10 +118,10 @@ fun main() {
 //
 //   println( alleHelden.filterIsInstance<Krieger>().first.maxHp)
 //    alleHelden.filterIsInstance<Krieger>().first.brutalSmash(alleBoesen)
-       //alleHelden.filterIsInstance<Krieger>().first.usePotion(beutel)
+//alleHelden.filterIsInstance<Krieger>().first.usePotion(beutel)
 
 
-    //stats(alleHelden,alleBoesen)
+//stats(alleHelden,alleBoesen)
 
 
 

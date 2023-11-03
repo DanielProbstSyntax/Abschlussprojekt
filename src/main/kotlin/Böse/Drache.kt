@@ -37,7 +37,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             println("ZAAAACK")
             held.hp -= schaden
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.hp}")
+            println("${held.name} hat jetzt noch ${held.hp}")
 
         } else {
             val schaden = (10..15).random() + atk
@@ -46,10 +46,10 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             println("Die Erde bebt")
             Thread.sleep(1500)
             println("ZAAAACK")
-            println("${held.name} Blockt durch sein Schild etwas Schaden vom Angriff")
+            println("${held.name} Blockt durch das Schild etwas Schaden vom Angriff")
             held.hp -= schaden
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.hp}")
+            println("${held.name} hat jetzt noch ${held.hp}")
             held.shild = false
 
         }
@@ -110,12 +110,12 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
     }
 
-    fun minion(boese: MutableList<Endboss>) { // BTIMMT FALSCH
-        var helfer = boese.filterIsInstance<Helfer>().first()
+    fun minion() { // BTIMMT FALSCH
+
         if (minion > 0) {
             println("$name hat seinen Helfer beschworen")
             minion = 0
-            helfer.alive = true
+
 
         } else {
             println("Zu schwach um einen Helfer zu beschwören")
@@ -130,6 +130,18 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         if (fluch > 0) {
             held.verflucht = true
 
+        }
+    }
+
+    fun angriff(helden: MutableList<Held>){
+        var randomAttack = Random.nextInt(1,6)
+        when(randomAttack){
+            1 -> spikeShot(helden)
+            2 -> tailWhip(helden)
+            3 -> firebreath(helden)
+            4 -> earthquake(helden)
+            5 -> minion()
+            6 -> fluch(helden)
         }
     }
 
