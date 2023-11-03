@@ -1,12 +1,15 @@
 open class Held(
     var name: String,
     var hp: Int,
+
     var weapon: String,
     var atk: Int,
     var stealth: Boolean = true,
     var shild: Boolean,
     var ausweichen: Boolean
 ) {
+    val maxHp:Int = hp
+    var verflucht:Boolean = false
 
 
     fun usePotion(team: MutableList<Held>, beutel: Beutel) {

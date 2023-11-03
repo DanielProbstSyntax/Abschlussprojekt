@@ -1,11 +1,11 @@
 import Böse.Endboss
 import kotlin.random.Random
 
-class Schurke(name: String, hp: Int, weapon: String, atk: Int, stealth:Boolean, var crit:Int, shild:Boolean=false,ausweichen:Boolean=true):Held(name,hp,weapon,atk,stealth,shild,ausweichen) {
+class Schurke(name: String, hp: Int, weapon: String, atk: Int, stealth:Boolean, var crit:Int, shild:Boolean=false,ausweichen:Boolean):Held(name,hp,weapon,atk,stealth,shild,ausweichen) {
 
 
     override fun toString(): String {
-        return "$name: hat $hp Lebenspunkte und $atk Angriffskraft"
+        return "$name: hat $hp Lebenspunkte und kämpft mit einem $weapon"
     }
 
     fun hinterhalt(boese: MutableList<Endboss>){
@@ -46,17 +46,18 @@ class Schurke(name: String, hp: Int, weapon: String, atk: Int, stealth:Boolean, 
         }
 
     }
-    fun ausweichen(){
+    fun dodge(){
         println("$name setzt 'Ausweichen' ein und hat damit die Chance den nächsten Angriff auszuweichen")
+        ausweichen = true
 
-        val canDodgeAttack = ausweichen && Random.nextBoolean()
-
-        if (canDodgeAttack) {
-            println("$name weicht dem Angriff des Drachen aus!")
-        } else {
-            println("$name wurde vom Drachen angegriffen!")
-            // Hier kannst du den Schaden verarbeiten oder entsprechend reagieren
-        }
+//        val canDodgeAttack = ausweichen && Random.nextBoolean()
+//
+//        if (canDodgeAttack) {
+//            println("$name weicht dem Angriff des Drachen aus!")
+//        } else {
+//            println("$name wurde vom Drachen angegriffen!")
+//            // Hier kannst du den Schaden verarbeiten oder entsprechend reagieren
+//        }
     }
 
     fun basicAttack(boese: MutableList<Endboss>){

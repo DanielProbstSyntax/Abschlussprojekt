@@ -3,7 +3,7 @@ import Böse.Endboss
 class Magier(name: String, hp: Int, weapon: String, atk: Int, shild: Boolean=false, var crit: Int,stealth:Boolean,ausweichen:Boolean) :
     Held(name,hp,weapon,atk,shild,stealth,ausweichen) {
     override fun toString(): String {
-        return "$name: hat $hp Lebenspunkte und $atk Angriffskraft"
+        return "$name: hat $hp Lebenspunkte und kämpft mit einem $weapon"
     }
 
     fun heal(team: MutableList<Held>) {

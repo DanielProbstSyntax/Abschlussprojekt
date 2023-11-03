@@ -2,12 +2,12 @@ import Böse.Drache
 import Böse.Endboss
 import kotlin.random.Random
 
-open class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: Int,shild: Boolean,stealth:Boolean,ausweichen:Boolean) :
+class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: Int,shild: Boolean,stealth:Boolean,ausweichen:Boolean) :
     Held(name,hp,weapon,atk,shild,stealth,ausweichen) {
         var battleShout = 1
 
     override fun toString(): String {
-        return "$name: hat $hp Lebenspunkte und $atk Angriffskraft"
+        return "$name: hat $hp Lebenspunkte und kämpft mit einer $weapon"
     }
 
     fun shildblock() {
@@ -18,12 +18,12 @@ open class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: In
     }
 
     fun headbutt(endboss: Endboss) { // NICHT FERTIG
-        var schaden = (30..60).random() + atk
+        var schaden = (30..60).random() //+ atk
         println("$name nimmt anlauf und rammt seinen Kopf mit aller Wucht gegen ${endboss.name}s Schädel ")
         Thread.sleep(500)
         println("BOOOM - Es knall laut und ${endboss.name} ist benommen. Ihm wurde etwas Angriffskraft für den nächsten Angriff abgezogen ")
         endboss.hp -= schaden
-        endboss.atk -= 20
+        //endboss.atk -= 20
         println("${endboss.name} wurden $schaden HP abgezogen")
         println("Er hat jetzt noch ${endboss.hp}")
 
@@ -58,6 +58,21 @@ open class Krieger(name: String, hp: Int, weapon: String, atk: Int, var crit: In
                 team[i].atk = atk + 40
                 battleShout -=1
         }else println("Kampfschrei ist nicht mehr verfügbar")
+
+
+    }
+    fun angriffe(endboss:Endboss){
+
+        println("1 für ShildBlock")
+        println("1 für ShildBlock")
+        println("1 für ShildBlock")
+        println("1 für ShildBlock")
+        println("1 für ShildBlock")
+        var x = readln().toInt()
+        when(x){
+            1 -> shildblock(endboss)
+        }
+            2 -> headbutt(endboss)
 
 
     }

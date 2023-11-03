@@ -37,15 +37,18 @@ fun select(team: MutableList<Held>): Held {
 
 }
 
-fun stats(team: MutableList<Held>, boese: MutableList<Endboss>) {
+fun statsHelden(team: MutableList<Held>) {
     for (i in team.indices) {
         println(team[i])
     }
+
+
+
+}
+fun statsBoese(boese: MutableList<Endboss>){
     for (i in boese.indices) {
         println(boese[i])
     }
-
-
 }
 
 

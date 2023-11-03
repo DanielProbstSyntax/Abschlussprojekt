@@ -7,6 +7,10 @@ import kotlin.random.Random
 class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean, var alive: Boolean = false) :
     Endboss(name, hp, atk, weapon, headbutt) {
     var heal = 1
+
+    override fun toString(): String {
+        return "$name: hat $hp Lebenspunkte und $atk Angriffskraft"
+    }
 //    fun steal(beutel: Beutel) { // Hilfe von ChatGPT
 //        val gestohleneTrankart: String
 //        val trankArt = listOf("Heiltrank", "Stärkungstrank")
@@ -99,6 +103,45 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean,
             println("Die Wörter ergeben einen Heilzauber die auf ${boese.first.name} gewirkt haben")
             boese.first.hp += 50
         } else println("$name wollte einen Heilzauber sprechen, hat aber nicht genug Energie dafür")
+    }
+    fun kick(helden: MutableList<Held>) {
+        val held = helden.random()
+        var schaden = (20..30).random() + atk
+        if (held.shild) {
+            println("$name springt in die Luft und gibt allen Helden einen heftigen Roundhousekick" )
+            Thread.sleep(800)
+            println("Die Attacke ist so stark, dass die Schilde der Helden keine Wirkung zeigen")
+            Thread.sleep(500)
+            println("....")
+            Thread.sleep(1500)
+            println("BAFFFF, $held klatschen auf den Boden und rutschen 5 m weit.")
+            for (i in helden.indices) {
+                helden[i].hp - schaden
+            }
+            println("$held wurden $schaden HP abgezogen")
+            for (i in helden.indices) {
+            println("Sie haben jetzt noch ${helden[i].hp}")
+            }
+            for (i in helden.indices) {
+                helden[i].shild = false
+            }
+
+
+        } else {
+            println("$name springt in die Luft und gibt allen Helden einen heftigen Roundhousekick" )
+            Thread.sleep(500)
+            println("....")
+            Thread.sleep(1500)
+            println("BAFFFF, $held klatschen auf den Boden und rutschen 5 m weit.")
+            for (i in helden.indices) {
+                helden[i].hp - schaden
+            }
+            println("$held wurden $schaden HP abgezogen")
+            for (i in helden.indices) {
+                println("Sie haben jetzt noch ${helden[i].hp}")
+            }
+
+        }
     }
 
 
