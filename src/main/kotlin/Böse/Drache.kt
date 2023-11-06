@@ -7,7 +7,7 @@ import kotlin.random.Random
 class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headbutt: Boolean) :
     Endboss(name, hp, atk, weapon, headbutt) {
     var minion = 1
-    var fluch = 1
+
 
 
     override fun toString(): String {
@@ -36,6 +36,9 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             Thread.sleep(1500)
             println("ZAAAACK")
             held.hp -= schaden
+            if (held.hp < 0){
+                held.hp = 0
+            }
             println("${held.name} wurden $schaden HP abgezogen")
             println("${held.name} hat jetzt noch ${held.hp}")
 
@@ -48,6 +51,9 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             println("ZAAAACK")
             println("${held.name} Blockt durch das Schild etwas Schaden vom Angriff")
             held.hp -= schaden
+            if (held.hp < 0){
+                held.hp = 0
+            }
             println("${held.name} wurden $schaden HP abgezogen")
             println("${held.name} hat jetzt noch ${held.hp}")
             held.shild = false
@@ -104,37 +110,41 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
     fun earthquake(helden: MutableList<Held>) {
         println("Plötzlich springt der Drache hoch in die Luft, schwingt einmal stark mit deinen Flügeln und")
         println("rast auf den Boden zu. Als er aufkommt entsteht ein heftiges Erdbeben")
+        var schaden = (10..15).random() + atk
         for (i in helden.indices) {
             helden[i].hp -= (10..15).random() + atk
+            println("${helden[i].name} wurde $schaden zugefügt")
         }
 
     }
 
-    fun minion() { // BTIMMT FALSCH
+    fun minion() {
 
         if (minion > 0) {
             println("$name hat seinen Helfer beschworen")
+            helfer = true
             minion = 0
-
-
-        } else {
-            println("Zu schwach um einen Helfer zu beschwören")
-
-        }
+            }else println("Keine Kraft mehr um den Helfer zu beschwören")
 
 
     }
 
     fun fluch(helden: MutableList<Held>) {
         val held = helden.random()
-        if (fluch > 0) {
-            held.verflucht = true
 
-        }
+        if (!held.verflucht && held.hp <= held.maxHp*0.2) {
+
+            held.verflucht = true
+            held.flüche +1
+            println("${held.name} ist jetzt verflucht bis seine Lebenspunkte bei 20 % angekommen sind")
+
+
+        }else println("${held.name} ist schon verflucht.")
     }
 
     fun angriff(helden: MutableList<Held>){
-        var randomAttack = Random.nextInt(1,6)
+        //var randomAttack = Random.nextInt(1,6)
+        var randomAttack = 5
         when(randomAttack){
             1 -> spikeShot(helden)
             2 -> tailWhip(helden)
@@ -143,6 +153,11 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             5 -> minion()
             6 -> fluch(helden)
         }
+    }
+
+    fun dracheBesiegt(){
+        println("Das Spiel ist zu Ende")
+
     }
 
 }

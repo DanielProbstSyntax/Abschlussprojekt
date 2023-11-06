@@ -1,15 +1,24 @@
 import Böse.Endboss
 import kotlin.random.Random
 
-class Schurke(name: String, hp: Int, weapon: String, atk: Int, stealth:Boolean, var crit:Int, shild:Boolean=false,ausweichen:Boolean):Held(name,hp,weapon,atk,stealth,shild,ausweichen) {
+class Schurke(
+    name: String,
+    hp: Int,
+    weapon: String,
+    atk: Int,
+    stealth: Boolean,
+    var crit: Int,
+    shild: Boolean = false,
+    ausweichen: Boolean
+) : Held(name, hp, weapon, atk, stealth, shild, ausweichen) {
 
 
     override fun toString(): String {
         return "$name: hat $hp Lebenspunkte und kämpft mit einem $weapon"
     }
 
-    fun hinterhalt(endboss: Endboss){
-        val drache=endboss // <---- NOCHMAL ABCHECKEN
+    fun hinterhalt(endboss: Endboss) {
+        val drache = endboss // <---- NOCHMAL ABCHECKEN
         val criticalHit = Random.nextInt(1, 101) <= crit
         var schaden = (30..60).random() + atk
         if (criticalHit) {
@@ -31,7 +40,8 @@ class Schurke(name: String, hp: Int, weapon: String, atk: Int, stealth:Boolean, 
 
 
     }
-    fun critHit(endboss: Endboss){
+
+    fun critHit(endboss: Endboss) {
         //val drache=boese.first // <---- NOCHMAL ABCHECKEN
         val criticalHit = Random.nextInt(1, 101) <= 100
         var schaden = (30..60).random() + atk
@@ -46,7 +56,8 @@ class Schurke(name: String, hp: Int, weapon: String, atk: Int, stealth:Boolean, 
         }
 
     }
-    fun dodge(){
+
+    fun dodge() {
         println("$name setzt 'Ausweichen' ein und hat damit die Chance den nächsten Angriff auszuweichen")
         ausweichen = true
 
@@ -60,7 +71,7 @@ class Schurke(name: String, hp: Int, weapon: String, atk: Int, stealth:Boolean, 
 //        }
     }
 
-    fun dolchhieb(endboss: Endboss){
+    fun dolchhieb(endboss: Endboss) {
         //val drache=boese.first // <---- NOCHMAL ABCHECKEN
         val criticalHit = Random.nextInt(1, 101) <= crit
         var schaden = (30..60).random() + atk
@@ -82,24 +93,68 @@ class Schurke(name: String, hp: Int, weapon: String, atk: Int, stealth:Boolean, 
         }
     }
 
-    fun angriffe(endboss:Endboss){
+    fun angriffe(endboss: Endboss, beutel: MutableList<Beutel>, boese: MutableList<Endboss>) {
+        if (hp < 0) {
+            hp = 0
+        }
+        if (verflucht && hp > maxHp * 0.2) {
+            var schaden = maxHp * 0.1
+            hp - schaden
+        }
+        if (hp < maxHp * 0.2) {
+            verflucht = false
+
+        }
+        if (!verflucht) {
+            flüche - 1
+        }
+
         println("$name ist jetzt dran")
-        println("Wähle eine Aktion")
-        println("1 für Hinterhalt")
-        println("2 für Kritischer Treffer")
-        println("3 für Ausweichen")
-        println("4 für Dolchhieb")
-        var x = readln().toInt()
-        when(x) {
-            1 -> hinterhalt(endboss)
-            2 -> critHit(endboss)
-            3 -> dodge()
-            4 -> dolchhieb(endboss)
+        var helfer = boese[1]
+        var drache = boese[0]
+        if (endboss.helfer) {
+
+            println("Wähle eine Aktion")
+            println("1 für Hinterhalt")
+            println("2 für Kritischer Treffer")
+            println("3 für Ausweichen")
+            println("4 für Dolchhieb")
+            var x = readln().toInt()
+            when (x) {
+                1 -> hinterhalt(helfer)
+                2 -> critHit(helfer)
+                3 -> dodge()
+                4 -> dolchhieb(helfer)
+                5 -> usePotion(beutel)
+            }
+
+        } else {
+            println("Wähle eine Aktion")
+            println("1 für Hinterhalt")
+            println("2 für Kritischer Treffer")
+            println("3 für Ausweichen")
+            println("4 für Dolchhieb")
+            var x = readln().toInt()
+            when (x) {
+                1 -> hinterhalt(drache)
+                2 -> critHit(drache)
+                3 -> dodge()
+                4 -> dolchhieb(drache)
+                5 -> usePotion(beutel)
+
+
+            }
+
 
         }
 
+
+
+
     }
-
-
-
+    fun tot() {
+        besiegt = true
+        //println("$name wurde besiegt!")
+    }
 }
+

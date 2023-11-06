@@ -11,44 +11,16 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
     override fun toString(): String {
         return "$name: hat $hp Lebenspunkte und $atk Angriffskraft"
     }
-//    fun steal(beutel: Beutel) { // Hilfe von ChatGPT
-//        val gestohleneTrankart: String
-//        val trankArt = listOf("Heiltrank", "Stärkungstrank")
-//
-//        val zufallsIndex = Random.nextInt(trankArt.size)
-//        gestohleneTrankart = trankArt[zufallsIndex]
-//
-//
-//        when (gestohleneTrankart) {
-//            "Heiltrank" -> {
-//                if (beutel.heiltrank.anzahl > 0) {
-//                    beutel.heiltrank.anzahl--
-//                    println("$name hat einen Heiltrank aus dem Beutel gestohlen.")
-//
-//                } else {
-//                    println("$name konnte keinen Trank stehlen")
-//                }
-//            }
-//
-//            "Stärkungstrank" -> {
-//                if (beutel.stärkungstrank.anzahl > 0) {
-//                    beutel.stärkungstrank.anzahl--
-//                    println("$name hat einen Stärkungstrank aus dem Beutel gestohlen.")
-//
-//                } else {
-//                    println("$name konnte keinen Trank stehlen")
-//                }
-//            }
-//        }
-//
-//    }
 
-    fun stehlen(beutel: Beutel) {
-        var xx = beutel.inhalt.random()
+
+    fun stehlen(beutel: MutableList<Beutel>) {
+        var xx = beutel.random()
         xx.anzahl -= 1
         println("Ein ${xx.name} wurde gestohlen")
-        println(beutel.inhalt)
+
     }
+
+
 
     fun punsh(helden: MutableList<Held>) {
         val held = helden.random()
@@ -140,6 +112,17 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             for (i in helden.indices) {
                 println("Sie haben jetzt noch ${helden[i].hp}")
             }
+
+        }
+    }
+    fun angriff(helden: MutableList<Held>,boese: MutableList<Endboss>,beutel: MutableList<Beutel>){
+        var randomAttack = Random.nextInt(1,6)
+        when(randomAttack){
+
+            1 -> kick(helden)
+            2 -> punsh(helden)
+            3 -> stehlen(beutel)
+            4 -> heal(boese)
 
         }
     }

@@ -1,2 +1,2 @@
-class Stärkungstrank(name:String = "Stärkungstrank", anzahl:Int = 1):Potions(name,anzahl) {
+class Stärkungstrank(name:String, anzahl:Int):Beutel(name,anzahl) {
 }

@@ -6,9 +6,14 @@
 //
 //}
 
-class Beutel(var inhalt: MutableList<Potions> = mutableListOf(Heiltrank(),Stärkungstrank())){
-    fun statusBeutel(){
-        for (i in inhalt)
-            println(i)
-    }
+open class Beutel(var name: String,var anzahl:Int){
+
+//    fun statusBeutel(){
+//        var counter = 1
+//        for (i in bla){
+//            println("$counter für $i")
+//            counter++
+//        }
+//    }
+
 }

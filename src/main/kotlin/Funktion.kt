@@ -2,14 +2,6 @@ import Böse.Endboss
 
 fun select(team: MutableList<Held>): Held {
 
-//    for (name in team){
-//
-//    println("Auf welchen Helden soll die Aktion ausgeführt werden ?")
-//    println("1 für ${name.name}")
-//    println("2 für ${name.name}") // Nochmal abchecken ! will den namen aus der liste bekommen
-//    println("3 für Schurke")
-//    }
-
     var count = 1
 
     for (i in team) {
