@@ -132,7 +132,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
     fun fluch(helden: MutableList<Held>) {
         val held = helden.random()
 
-        if (!held.verflucht && held.hp <= held.maxHp*0.2) {
+        if (!held.verflucht && held.flüche == 0) {
 
             held.verflucht = true
             held.flüche +1
@@ -143,8 +143,13 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
     }
 
     fun angriff(helden: MutableList<Held>){
+        if (hp < 0) {
+            hp = 0
+        }
         //var randomAttack = Random.nextInt(1,6)
-        var randomAttack = 5
+        var randomAttack = 6
+
+
         when(randomAttack){
             1 -> spikeShot(helden)
             2 -> tailWhip(helden)

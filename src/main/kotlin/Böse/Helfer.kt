@@ -73,7 +73,7 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
 
 
             println("Die Wörter ergeben einen Heilzauber die auf ${boese.first.name} gewirkt haben")
-            boese.first.hp += 50
+            boese.first.hp += 200
         } else println("$name wollte einen Heilzauber sprechen, hat aber nicht genug Energie dafür")
     }
     fun kick(helden: MutableList<Held>) {
@@ -115,8 +115,11 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
 
         }
     }
-    fun angriff(helden: MutableList<Held>,boese: MutableList<Endboss>,beutel: MutableList<Beutel>){
-        var randomAttack = Random.nextInt(1,6)
+    fun angriff(helden: MutableList<Held>, boese: MutableList<Endboss>, beutel: MutableList<Beutel>){
+        if (hp < 0) {
+            hp = 0
+        }
+        var randomAttack = Random.nextInt(1,4)
         when(randomAttack){
 
             1 -> kick(helden)

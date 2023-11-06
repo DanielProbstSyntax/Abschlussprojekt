@@ -101,57 +101,65 @@ class Schurke(
             var schaden = maxHp * 0.1
             hp - schaden
         }
-        if (hp < maxHp * 0.2) {
+        if (verflucht && hp < maxHp * 0.2) {
             verflucht = false
-
-        }
-        if (!verflucht) {
-            flüche - 1
+            flüche = 0
+            println("Der Fluch ist zu Ende")
         }
 
         println("$name ist jetzt dran")
         var helfer = boese[1]
         var drache = boese[0]
-        if (endboss.helfer) {
-
-            println("Wähle eine Aktion")
-            println("1 für Hinterhalt")
-            println("2 für Kritischer Treffer")
-            println("3 für Ausweichen")
-            println("4 für Dolchhieb")
-            var x = readln().toInt()
-            when (x) {
-                1 -> hinterhalt(helfer)
-                2 -> critHit(helfer)
-                3 -> dodge()
-                4 -> dolchhieb(helfer)
-                5 -> usePotion(beutel)
+        if (!besiegt) {
+            if (endboss.helfer && helfer.hp <= 0){
+                endboss.helfer = false
+                println("Der Helfer wurde besiegt")
             }
+            if (endboss.helfer) {
 
-        } else {
-            println("Wähle eine Aktion")
-            println("1 für Hinterhalt")
-            println("2 für Kritischer Treffer")
-            println("3 für Ausweichen")
-            println("4 für Dolchhieb")
-            var x = readln().toInt()
-            when (x) {
-                1 -> hinterhalt(drache)
-                2 -> critHit(drache)
-                3 -> dodge()
-                4 -> dolchhieb(drache)
-                5 -> usePotion(beutel)
+                println("Wähle eine Aktion")
+                println("1 für Hinterhalt")
+                println("2 für Kritischer Treffer")
+                println("3 für Ausweichen")
+                println("4 für Dolchhieb")
+                var x = readln().toInt()
+                when (x) {
+                    1 -> hinterhalt(helfer)
+                    2 -> critHit(helfer)
+                    3 -> dodge()
+                    4 -> dolchhieb(helfer)
+                    5 -> usePotion(beutel)
+                }
+
+            } else {
+                println("Wähle eine Aktion")
+                println("1 für Hinterhalt")
+                println("2 für Kritischer Treffer")
+                println("3 für Ausweichen")
+                println("4 für Dolchhieb")
+                var x = readln().toInt()
+                when (x) {
+                    1 -> hinterhalt(drache)
+                    2 -> critHit(drache)
+                    3 -> dodge()
+                    4 -> dolchhieb(drache)
+                    5 -> usePotion(beutel)
+
+
+                }
 
 
             }
-
-
+            if (verflucht) {
+                var schaden = maxHp * 0.1
+                hp - schaden
+                println("Es wurden $schaden Schaden durch einen Fluch verursacht")
+            }
         }
 
 
-
-
     }
+
     fun tot() {
         besiegt = true
         //println("$name wurde besiegt!")

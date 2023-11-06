@@ -11,7 +11,7 @@ open class Held(
 ) {
     var besiegt:Boolean = false
     val maxHp: Int = hp
-    val flüche = 0
+    var flüche = 0
 
 
 
@@ -51,32 +51,6 @@ open class Held(
 
     }
 }
-//    fun usePotion(beutel: Beutel) {
-//        var anzahlTränke = beutel.inhalt.filterIsInstance<Heiltrank>().first.anzahl
-//        var anzahlStärkung = beutel.inhalt.filterIsInstance<Stärkungstrank>().first.anzahl
-//        println("Dein Held greift in den beutel, was soll er benutzen ? :")
-//        beutel.statusBeutel()
-//
-//        var input = readln().toInt()
-//        while (input > 2 || input == 0) {
-//            println("Falsche Eingabe, versuche es nochmal")
-//            input = readln().toInt()
-//        }
-//        when (input) {
-//            1 -> anzahlTränke -= 1
-//            2 -> anzahlStärkung -= 1
-//        }
-//
-//
-//        if (input == 1) {
-//            .hp += 40
-//            println("{${targetHeal.name}} hat einen Heiltrank benutzt und hat jetzt ${targetHeal.hp} Lebenspunkte")
-//
-//        } else if (input == 2) {
-//            targetHeal.atk += 50
-//            println("${targetHeal.name} hat einen Angriffskraft-Trank benutzt und hat jetzt ${targetHeal.atk} Angriffskraft")
-//        }
-//    }
 
 
 

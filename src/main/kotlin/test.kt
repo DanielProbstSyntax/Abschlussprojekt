@@ -10,7 +10,7 @@ fun main() {
         krieger, magier, schurke
 
     )
-    var helfer = Helfer("Gustav der böse", 500, 0, "Schwert", false)
+    var helfer = Helfer("Gustav der böse", 50, 0, "Schwert", false)
     var drache = Drache("Dämon Infernothor", 1000, 0, "Dämonen Schwert", false)
     val alleBoesen: MutableList<Endboss> = mutableListOf(
         drache,helfer
@@ -77,7 +77,7 @@ fun main() {
             println("Das Spiel hat begonnen. Runde: $runde")
         while (true) {
 
-            krieger.angriffe(drache,alleHelden,alleTraenke)
+            krieger.angriffe(drache,alleHelden,alleTraenke,alleBoesen)
             statsHelden(alleHelden)
             magier.angriffe(drache, alleHelden, alleBoesen,alleTraenke)
             statsHelden(alleHelden)

@@ -69,49 +69,88 @@ class Magier(
         //println("$name wurde besiegt!")
     }
 
-    fun angriffe(endboss: Endboss, helden: MutableList<Held>, alleBoesen: MutableList<Endboss>,beutel:MutableList<Beutel>) {
+    fun angriffe(
+        endboss: Endboss,
+        helden: MutableList<Held>,
+        alleBoesen: MutableList<Endboss>,
+        beutel: MutableList<Beutel>
+    ) {
 
-        if (hp < 0){
+        if (hp < 0) {
             hp = 0
         }
-        if (verflucht && hp > maxHp*0.2){
+        if (verflucht && hp > maxHp * 0.2) {
             var schaden = maxHp * 0.1
             hp - schaden
         }
-        if (hp < maxHp*0.2){
+        if (verflucht && hp < maxHp * 0.2) {
             verflucht = false
+            flüche = 0
+            println("Der Fluch ist zu Ende")
+        }
 
-        }
-        if (!verflucht){
-            flüche-1
-        }
+
+        var helfer = alleBoesen[1]
+        var drache = alleBoesen[0]
         if (!besiegt) {
-            println("$name ist jetzt dran")
-            println("Wähle eine Aktion")
-            Thread.sleep(500)
-            println("1 für Heilen")
-            Thread.sleep(500)
-            println("2 für Eis-Schild")
-            Thread.sleep(500)
-            println("3 für Lava Schlag")
-            Thread.sleep(500)
-            println("4 für Eisregen")
-            Thread.sleep(500)
-            println("5 um den Beutel zu öffnen")
-            var x = readln().toInt()
-            when (x) {
-                1 -> heal(helden)
-                2 -> shild()
-                3 -> lavaBurst(endboss)
-                4 -> frostBlizzard(alleBoesen)
-                5 -> usePotion(beutel)
-
+            if (endboss.helfer && helfer.hp <= 0){
+                endboss.helfer = false
+                println("Der Helfer wurde besiegt")
             }
+            if (endboss.helfer) {
+
+                println("$name ist jetzt dran")
+                println("Wähle eine Aktion")
+                Thread.sleep(500)
+                println("1 für Heilen")
+                Thread.sleep(500)
+                println("2 für Eis-Schild")
+                Thread.sleep(500)
+                println("3 für Lava Schlag")
+                Thread.sleep(500)
+                println("4 für Eisregen")
+                Thread.sleep(500)
+                println("5 um den Beutel zu öffnen")
+                var x = readln().toInt()
+                when (x) {
+                    1 -> heal(helden)
+                    2 -> shild()
+                    3 -> lavaBurst(helfer)
+                    4 -> frostBlizzard(alleBoesen)
+                    5 -> usePotion(beutel)
+
+                }
 
 
+            } else {
+                println("$name ist jetzt dran")
+                println("Wähle eine Aktion")
+                Thread.sleep(500)
+                println("1 für Heilen")
+                Thread.sleep(500)
+                println("2 für Eis-Schild")
+                Thread.sleep(500)
+                println("3 für Lava Schlag")
+                Thread.sleep(500)
+                println("4 für Eisregen")
+                Thread.sleep(500)
+                println("5 um den Beutel zu öffnen")
+                var x = readln().toInt()
+                when (x) {
+                    1 -> heal(helden)
+                    2 -> shild()
+                    3 -> lavaBurst(drache)
+                    4 -> frostBlizzard(alleBoesen)
+                    5 -> usePotion(beutel)
 
-        } else {
-            println("$name kann nicht angreifen, da Sie bereits besiegt wurde.")
+                }
+            }
+        }
+
+        if (verflucht) {
+            var schaden = maxHp * 0.1
+            hp - schaden
+            println("Es wurden $schaden Schaden durch einen Fluch verursacht")
         }
 
     }
