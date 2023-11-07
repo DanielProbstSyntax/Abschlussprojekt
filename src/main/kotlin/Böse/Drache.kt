@@ -1,12 +1,12 @@
 package Böse
 
 import Held
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headbutt: Boolean) :
     Endboss(name, hp, atk, weapon, headbutt) {
     var minion = 1
-
-
 
 
     override fun toString(): String {
@@ -146,19 +146,18 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
         val held = helden.random()
         if (!held.verflucht && flüche == 1) {
-        println("__ __ __ __ __ __ __ ")
-        println(
-            " ___            __       \n" +
-                    "|__  |    |  | /  ` |__| \n" +
-                    "|    |___ \\__/ \\__, |  | \n" +
-                    "                         "
-        )
-        println("__ __ __ __ __ __ __ ")
+            println("__ __ __ __ __ __ __ ")
+            println(
+                " ___            __       \n" +
+                        "|__  |    |  | /  ` |__| \n" +
+                        "|    |___ \\__/ \\__, |  | \n" +
+                        "                         "
+            )
+            println("__ __ __ __ __ __ __ ")
             held.verflucht = true
             flüche = 0
 
             println("${held.name} ist jetzt verflucht bis die Lebenspunkte bei 20 % angekommen sind")
-
 
 
         } else println("${held.name} ist schon verflucht.")
@@ -175,24 +174,37 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         )
         println("__ __ __ __ __ __ __ ")
         Thread.sleep(800)
+        if (flüche == 1) {
+            val randomAttack = Random.nextInt(1, 6)
 
-        var randomAttack = Random.nextInt(1,6)
+            when (randomAttack) {
+                1 -> spikeShot(helden)
+                2 -> tailWhip(helden)
+                3 -> firebreath(helden)
+                4 -> earthquake(helden)
+                5 -> minion()
+                6 -> fluch(helden)
+            }
+        } else {
+            val randomAttack = Random.nextInt(1, 5)
+            when (randomAttack) {
+                1 -> spikeShot(helden)
+                2 -> tailWhip(helden)
+                3 -> firebreath(helden)
+                4 -> earthquake(helden)
+                5 -> minion()
+            }
 
-        when (randomAttack) {
-            1 -> spikeShot(helden)
-            2 -> tailWhip(helden)
-            3 -> firebreath(helden)
-            4 -> earthquake(helden)
-            5 -> minion()
-            6 -> fluch(helden)
         }
     }
 
     fun dracheBesiegt() {
-        println(" __   __        __        ___     __   ___  __     ___  __  ___ \n" +
-                "|  \\ |__)  /\\  /  ` |__| |__     |__) |__  /__` | |__  / _`  |  \n" +
-                "|__/ |  \\ /~~\\ \\__, |  | |___    |__) |___ .__/ | |___ \\__>  |  \n" +
-                "                                                                ")
+        println(
+            " __   __        __        ___     __   ___  __     ___  __  ___ \n" +
+                    "|  \\ |__)  /\\  /  ` |__| |__     |__) |__  /__` | |__  / _`  |  \n" +
+                    "|__/ |  \\ /~~\\ \\__, |  | |___    |__) |___ .__/ | |___ \\__>  |  \n" +
+                    "                                                                "
+        )
 
     }
 
