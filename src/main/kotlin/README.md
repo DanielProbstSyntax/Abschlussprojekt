@@ -28,3 +28,4 @@ Das Hauptziel von "Heroes and Dragon" ist es, den Drachen Infernotor zu besiegen
 Die Steuerung des Spiels erfolgt über die Eingabe von Zahlen auf deiner Tastatur. Die genaue Zuordnung der Zahlen zu den Aktionen wird im Spiel erklärt.
 
 GG
+![Bildschirmfoto 2023-10-31 um 09 03 50](https://github.com/DanielProbstSyntax/Abschlussprojekt/assets/144678294/a22a1e51-5971-4a1a-acbf-0360e6381ae6)
