@@ -1,12 +1,11 @@
 package Böse
 
 import Held
-import Krieger
-import kotlin.random.Random
 
 class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headbutt: Boolean) :
     Endboss(name, hp, atk, weapon, headbutt) {
     var minion = 1
+
 
 
 
@@ -26,14 +25,14 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             println("Die Erde bebt")
             Thread.sleep(800)
             println("ZAAAACK")
-            held.hp -= schaden
-            if (held.hp < 0){
-                held.hp = 0
+            held.maxHp -= schaden
+            if (held.maxHp < 0) {
+                held.maxHp = 0
             }
             Thread.sleep(800)
             println("__ __ __ __ __ __ __ ")
             println("${held.name} wurden $schaden HP abgezogen")
-            println("${held.name} hat jetzt noch ${held.hp}")
+            println("${held.name} hat jetzt noch ${held.maxHp}")
             Thread.sleep(800)
 
         } else {
@@ -45,13 +44,13 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             println("ZAAAACK")
             println("${held.name} Blockt durch das Schild etwas Schaden vom Angriff")
             Thread.sleep(800)
-            held.hp -= schaden
-            if (held.hp < 0){
-                held.hp = 0
+            held.maxHp -= schaden
+            if (held.maxHp < 0) {
+                held.maxHp = 0
             }
             println("__ __ __ __ __ __ __ ")
             println("${held.name} wurden $schaden HP abgezogen")
-            println("${held.name} hat jetzt noch ${held.hp}")
+            println("${held.name} hat jetzt noch ${held.maxHp}")
             held.shild = false
             Thread.sleep(800)
 
@@ -69,10 +68,10 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             Thread.sleep(800)
             println("ZISCHHH wie eine Peitsche")
             Thread.sleep(800)
-            held.hp -= schaden
+            held.maxHp -= schaden
             println("__ __ __ __ __ __ __ ")
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.hp}")
+            println("Er hat jetzt noch ${held.maxHp}")
             Thread.sleep(800)
 
         } else {
@@ -85,10 +84,10 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             Thread.sleep(800)
             println("${held.name} aber, Blockt durch sein Schild etwas Schaden vom Angriff")
             Thread.sleep(800)
-            held.hp -= schaden
+            held.maxHp -= schaden
             println("__ __ __ __ __ __ __ ")
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.hp}")
+            println("Er hat jetzt noch ${held.maxHp}")
             held.shild = false
 
         }
@@ -103,7 +102,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         Thread.sleep(800)
         var schaden = (10..15).random() + atk
         for (i in helden.indices) {
-            helden[i].hp -= schaden
+            helden[i].maxHp -= schaden
         }
         println("__ __ __ __ __ __ __ ")
         println("Den Helden wurden $schaden Lebenspunkte abgezogen")
@@ -117,7 +116,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         println("rast auf den Boden zu. Als er aufkommt entsteht ein heftiges Erdbeben")
         var schaden = (10..15).random() + atk
         for (i in helden.indices) {
-            helden[i].hp -= (10..15).random() + atk
+            helden[i].maxHp -= (10..15).random() + atk
             println("__ __ __ __ __ __ __ ")
             println("${helden[i].name} wurde $schaden zugefügt")
         }
@@ -128,51 +127,58 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
         if (minion > 0) {
             println("__ __ __ __ __ __ __ ")
-            println("      ___       ___  ___  __      __   ___  __   __             __   __   ___      \n" +
-                    "|__| |__  |    |__  |__  |__)    |__) |__  /__` /  ` |__| |  | /  \\ |__) |__  |\\ | \n" +
-                    "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ \\__, |  | |/\\| \\__/ |  \\ |___ | \\| \n" +
-                    "                                                                                   ")
+            println(
+                "      ___       ___  ___  __      __   ___  __   __             __   __   ___      \n" +
+                        "|__| |__  |    |__  |__  |__)    |__) |__  /__` /  ` |__| |  | /  \\ |__) |__  |\\ | \n" +
+                        "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ \\__, |  | |/\\| \\__/ |  \\ |___ | \\| \n" +
+                        "                                                                                   "
+            )
             println("__ __ __ __ __ __ __ ")
             helfer = true
             minion = 0
-            }else println("Keine Kraft mehr um den Helfer zu beschwören")
+        } else println("Keine Kraft mehr um den Helfer zu beschwören")
 
 
     }
 
     fun fluch(helden: MutableList<Held>) {
+
+
         val held = helden.random()
+        if (!held.verflucht && flüche == 1) {
         println("__ __ __ __ __ __ __ ")
-        println(" ___            __       \n" +
-                "|__  |    |  | /  ` |__| \n" +
-                "|    |___ \\__/ \\__, |  | \n" +
-                "                         ")
+        println(
+            " ___            __       \n" +
+                    "|__  |    |  | /  ` |__| \n" +
+                    "|    |___ \\__/ \\__, |  | \n" +
+                    "                         "
+        )
         println("__ __ __ __ __ __ __ ")
-
-        if (!held.verflucht && held.flüche == 0) {
-
             held.verflucht = true
-            held.flüche +1
+            flüche = 0
+
             println("${held.name} ist jetzt verflucht bis die Lebenspunkte bei 20 % angekommen sind")
 
 
-        }else println("${held.name} ist schon verflucht.")
+
+        } else println("${held.name} ist schon verflucht.")
     }
 
-    fun angriff(helden: MutableList<Held>){
-        if (hp < 0) {
-            hp = 0
-        }
+    fun angriff(helden: MutableList<Held>) {
+
         println("__ __ __ __ __ __ __ ")
-        println(" __   __   __   __   __             __   ___ \n" +
-                "|__) /  \\ /__` /__` |__) |  | |\\ | |  \\ |__  \n" +
-                "|__) \\__/ .__/ .__/ |  \\ \\__/ | \\| |__/ |___ \n" +
-                "                                             ")
+        println(
+            " __   __   __   __   __             __   ___ \n" +
+                    "|__) /  \\ /__` /__` |__) |  | |\\ | |  \\ |__  \n" +
+                    "|__) \\__/ .__/ .__/ |  \\ \\__/ | \\| |__/ |___ \n" +
+                    "                                             "
+        )
         println("__ __ __ __ __ __ __ ")
         Thread.sleep(800)
-        //var randomAttack = Random.nextInt(1,6)
-        var randomAttack = 5
-        when(randomAttack){
+
+        var randomAttack = Random.nextInt(1,6)
+
+        when (randomAttack) {
             1 -> spikeShot(helden)
             2 -> tailWhip(helden)
             3 -> firebreath(helden)
@@ -182,8 +188,11 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         }
     }
 
-    fun dracheBesiegt(){
-        println("Das Spiel ist zu Ende")
+    fun dracheBesiegt() {
+        println(" __   __        __        ___     __   ___  __     ___  __  ___ \n" +
+                "|  \\ |__)  /\\  /  ` |__| |__     |__) |__  /__` | |__  / _`  |  \n" +
+                "|__/ |  \\ /~~\\ \\__, |  | |___    |__) |___ .__/ | |___ \\__>  |  \n" +
+                "                                                                ")
 
     }
 

@@ -3,20 +3,19 @@ import kotlin.random.Random
 
 class Schurke(
     name: String,
-    hp: Int,
+    maxHp: Int,
     weapon: String,
     atk: Int,
     stealth: Boolean,
     var crit: Int,
     shild: Boolean = false,
     ausweichen: Boolean
-) : Held(name, hp, weapon, atk, stealth, shild, ausweichen) {
-    var lange = Thread.sleep(800)
-    var kurz = Thread.sleep(500)
+) : Held(name, maxHp, weapon, atk, stealth, shild, ausweichen) {
+
 
 
     override fun toString(): String {
-        return "$name: hat $hp Lebenspunkte und kämpft mit einem $weapon"
+        return "$name: hat $maxHp Lebenspunkte, $atk Angriffskraft und kämpft mit einem $weapon"
     }
 
     fun hinterhalt(endboss: Endboss) {
@@ -130,9 +129,7 @@ class Schurke(
     }
 
     fun angriffe(endboss: Endboss, beutel: MutableList<Beutel>, boese: MutableList<Endboss>) {
-        if (hp < 0) {
-            hp = 0
-        }
+
         if (verflucht && hp > maxHp * 0.2) {
             var schaden = maxHp * 0.1
             hp - schaden
@@ -141,7 +138,7 @@ class Schurke(
         }
         if (verflucht && hp < maxHp * 0.2) {
             verflucht = false
-            flüche = 0
+            endboss.flüche = 1
             println("Der Fluch ist abgelaufen und verursacht keinen Schaden mehr")
             Thread.sleep(800)
         }
@@ -155,18 +152,7 @@ class Schurke(
 
             if (endboss.helfer) {
 
-                println("Wähle eine Aktion")
-                Thread.sleep(400)
-                println("1 für Hinterhalt")
-                Thread.sleep(400)
-                println("2 für Kritischer Treffer")
-                Thread.sleep(400)
-                println("3 für Ausweichen")
-                Thread.sleep(400)
-                println("4 für Dolchhieb")
-                Thread.sleep(400)
-                println("5 um den Beutel zu benutzen")
-                println("__ __ __ __ __ __ __ ")
+                chooseAktion()
                 var x = readln().toInt()
                 when (x) {
                     1 -> hinterhalt(helfer)
@@ -178,16 +164,7 @@ class Schurke(
                 }
 
             } else {
-                println("Wähle eine Aktion")
-                Thread.sleep(400)
-                println("1 für Hinterhalt")
-                Thread.sleep(400)
-                println("2 für Kritischer Treffer")
-                Thread.sleep(400)
-                println("3 für Ausweichen")
-                Thread.sleep(400)
-                println("4 für Dolchhieb")
-                Thread.sleep(400)
+                chooseAktion()
                 var x = readln().toInt()
                 when (x) {
                     1 -> hinterhalt(drache)
@@ -199,25 +176,47 @@ class Schurke(
 
                 }
 
+            }
+//            if (verflucht) {
+//                 if (hp > maxHp * 0.20) {
+//                     val schaden = (maxHp * 0.10).toInt()
+//                     hp -= schaden
+//                     println("${name} verliert $schaden% seiner HP durch den Fluch.")
+//                 }
 
-            }
-            if (verflucht) {
-                var schaden = maxHp * 0.1
-                hp - schaden
-                println("Es wurden $schaden Schaden durch einen Fluch verursacht")
-                Thread.sleep(800)
-            }
-            if (endboss.helfer && helfer.hp <= 0){
+//                var schaden = maxHp * 0.1
+//                hp - schaden
+//                println("Es wurden $schaden Schaden durch einen Fluch verursacht")
+//                Thread.sleep(800)
+//            }
+            if (endboss.helfer && helfer.hp <= 0) {
                 endboss.helfer = false
-                println("      ___       ___  ___  __      __   ___  __     ___  __  ___ \n" +
-                        "|__| |__  |    |__  |__  |__)    |__) |__  /__` | |__  / _`  |  \n" +
-                        "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ | |___ \\__>  |  \n" +
-                        "                                                                ")
+                println(
+                    "      ___       ___  ___  __      __   ___  __     ___  __  ___ \n" +
+                            "|__| |__  |    |__  |__  |__)    |__) |__  /__` | |__  / _`  |  \n" +
+                            "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ | |___ \\__>  |  \n" +
+                            "                                                                "
+                )
                 Thread.sleep(800)
             }
-        }
+        }else println("Der Held ist tot")
 
 
+    }
+
+    private fun chooseAktion() {
+        println("Wähle eine Aktion")
+        Thread.sleep(400)
+        println("1 für Hinterhalt")
+        Thread.sleep(400)
+        println("2 für Kritischer Treffer")
+        Thread.sleep(400)
+        println("3 für Ausweichen")
+        Thread.sleep(400)
+        println("4 für Dolchhieb")
+        Thread.sleep(400)
+        println("5 um den Beutel zu benutzen")
+        println("__ __ __ __ __ __ __ ")
     }
 
     fun tot() {

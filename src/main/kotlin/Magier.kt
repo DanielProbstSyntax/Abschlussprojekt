@@ -2,7 +2,7 @@ import Böse.Endboss
 
 class Magier(
     name: String,
-    hp: Int,
+    maxHp: Int,
     weapon: String,
     atk: Int,
     shild: Boolean = false,
@@ -10,9 +10,9 @@ class Magier(
     stealth: Boolean,
     ausweichen: Boolean
 ) :
-    Held(name, hp, weapon, atk, shild, stealth, ausweichen) {
+    Held(name, maxHp, weapon, atk, shild, stealth, ausweichen) {
     override fun toString(): String {
-        return "$name: hat $hp Lebenspunkte und kämpft mit einem $weapon"
+        return "$name: hat $maxHp Lebenspunkte, $atk Angriffskraft und kämpft mit einem $weapon"
     }
 
     fun heal(team: MutableList<Held>) {
@@ -20,10 +20,10 @@ class Magier(
         Thread.sleep(800)
         var targetHeal = select(team)
         Thread.sleep(800)
-        targetHeal.hp += 20
+        targetHeal.maxHp += 20
         println("__ __ __ __ __ __ __ ")
         println("${targetHeal.name} wurde um 20 geheilt")
-        println("Er hat jetzt ${targetHeal.hp} Lebenspunkte")
+        println("Er hat jetzt ${targetHeal.maxHp} Lebenspunkte")
         Thread.sleep(800)
 
 
@@ -36,7 +36,7 @@ class Magier(
     }
 
     fun lavaBurst(endboss: Endboss) {
-        //val drache = boese.first
+
         var schaden = (30..60).random() + atk
         println("$name faltet ihre Hände zusammen und kanalisiert einen Lavaschlag")
         Thread.sleep(800)
@@ -80,8 +80,8 @@ class Magier(
         beutel: MutableList<Beutel>
     ) {
 
-        if (hp < 0) {
-            hp = 0
+        if (maxHp < 0) {
+            maxHp = 0
         }
         if (verflucht && hp > maxHp * 0.2) {
             var schaden = maxHp * 0.1
@@ -91,7 +91,7 @@ class Magier(
         }
         if (verflucht && hp < maxHp * 0.2) {
             verflucht = false
-            flüche = 0
+            endboss.flüche = 0
             println("Der Fluch ist abgelaufen und verursacht keinen Schaden mehr")
             Thread.sleep(800)
         }
@@ -102,22 +102,12 @@ class Magier(
         println("$name ist jetzt dran")
         println("__ __ __ __ __ __ __ ")
         if (!besiegt) {
-            if (endboss.helfer && helfer.hp <= 0){
+            if (endboss.helfer && helfer.hp <= 0) {
                 endboss.helfer = false
                 println("Der Helfer wurde besiegt")
             }
             if (endboss.helfer) {
-                println("Wähle eine Aktion")
-                Thread.sleep(500)
-                println("1 für Heilen")
-                Thread.sleep(500)
-                println("2 für Eis-Schild")
-                Thread.sleep(500)
-                println("3 für Lava Schlag")
-                Thread.sleep(500)
-                println("4 für Eisregen")
-                Thread.sleep(500)
-                println("5 um den Beutel zu öffnen")
+                chooseAktion()
                 println("__ __ __ __ __ __ __ ")
                 var x = readln().toInt()
                 when (x) {
@@ -131,17 +121,7 @@ class Magier(
 
 
             } else {
-                println("Wähle eine Aktion")
-                Thread.sleep(500)
-                println("1 für Heilen")
-                Thread.sleep(500)
-                println("2 für Eis-Schild")
-                Thread.sleep(500)
-                println("3 für Lava Schlag")
-                Thread.sleep(500)
-                println("4 für Eisregen")
-                Thread.sleep(500)
-                println("5 um den Beutel zu öffnen")
+                chooseAktion()
                 var x = readln().toInt()
                 when (x) {
                     1 -> heal(helden)
@@ -156,20 +136,35 @@ class Magier(
 
         if (verflucht) {
             var schaden = maxHp * 0.1
-            hp - schaden
+            maxHp - schaden
             println("Es wurden $schaden Schaden durch einen Fluch verursacht")
         }
-        if (endboss.helfer && helfer.hp <= 0){
+        if (endboss.helfer && helfer.hp <= 0) {
             endboss.helfer = false
-            println("      ___       ___  ___  __      __   ___  __     ___  __  ___ \n" +
-                    "|__| |__  |    |__  |__  |__)    |__) |__  /__` | |__  / _`  |  \n" +
-                    "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ | |___ \\__>  |  \n" +
-                    "                                                                ")
+            println(
+                "      ___       ___  ___  __      __   ___  __     ___  __  ___ \n" +
+                        "|__| |__  |    |__  |__  |__)    |__) |__  /__` | |__  / _`  |  \n" +
+                        "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ | |___ \\__>  |  \n" +
+                        "                                                                "
+            )
             Thread.sleep(800)
         }
 
     }
 
+    private fun chooseAktion() {
+        println("Wähle eine Aktion")
+        Thread.sleep(500)
+        println("1 für Heilen")
+        Thread.sleep(500)
+        println("2 für Eis-Schild")
+        Thread.sleep(500)
+        println("3 für Lava Schlag")
+        Thread.sleep(500)
+        println("4 für Eisregen")
+        Thread.sleep(500)
+        println("5 um den Beutel zu öffnen")
+    }
 
 
 }

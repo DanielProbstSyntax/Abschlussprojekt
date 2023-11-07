@@ -21,7 +21,6 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
     }
 
 
-
     fun punsh(helden: MutableList<Held>) {
         val held = helden.random()
         var schaden = (20..30).random() + atk
@@ -31,9 +30,9 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             println("....")
             Thread.sleep(1500)
             println("PATSCH, in youuur FACE")
-            held.hp -= schaden
+            held.maxHp -= schaden
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.hp}")
+            println("Er hat jetzt noch ${held.maxHp}")
 
         } else {
             schaden = (10..15).random() + atk
@@ -43,9 +42,9 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             Thread.sleep(1500)
             println("ABER")
             println("${held.name} hebt schnell sein Schild und blockt etwas Schaden ab")
-            held.hp -= schaden
+            held.maxHp -= schaden
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.hp}")
+            println("Er hat jetzt noch ${held.maxHp}")
             held.shild = false
 
         }
@@ -76,11 +75,12 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             boese.first.hp += 200
         } else println("$name wollte einen Heilzauber sprechen, hat aber nicht genug Energie dafür")
     }
+
     fun kick(helden: MutableList<Held>) {
         val held = helden.random()
         var schaden = (20..30).random() + atk
         if (held.shild) {
-            println("$name springt in die Luft und gibt allen Helden einen heftigen Roundhousekick" )
+            println("$name springt in die Luft und gibt allen Helden einen heftigen Roundhousekick")
             Thread.sleep(800)
             println("Die Attacke ist so stark, dass die Schilde der Helden keine Wirkung zeigen")
             Thread.sleep(500)
@@ -88,11 +88,11 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             Thread.sleep(1500)
             println("BAFFFF, $held klatschen auf den Boden und rutschen 5 m weit.")
             for (i in helden.indices) {
-                helden[i].hp - schaden
+                helden[i].maxHp - schaden
             }
             println("$held wurden $schaden HP abgezogen")
             for (i in helden.indices) {
-            println("Sie haben jetzt noch ${helden[i].hp}")
+                println("Sie haben jetzt noch ${helden[i].maxHp}")
             }
             for (i in helden.indices) {
                 helden[i].shild = false
@@ -100,31 +100,34 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
 
 
         } else {
-            println("$name springt in die Luft und gibt allen Helden einen heftigen Roundhousekick" )
+            println("$name springt in die Luft und gibt allen Helden einen heftigen Roundhousekick")
             Thread.sleep(500)
             println("....")
             Thread.sleep(1500)
             println("BAFFFF, $held klatschen auf den Boden und rutschen 5 m weit.")
             for (i in helden.indices) {
-                helden[i].hp - schaden
+                helden[i].maxHp - schaden
             }
             println("$held wurden $schaden HP abgezogen")
             for (i in helden.indices) {
-                println("Sie haben jetzt noch ${helden[i].hp}")
+                println("Sie haben jetzt noch ${helden[i].maxHp}")
             }
 
         }
     }
-    fun angriff(helden: MutableList<Held>, boese: MutableList<Endboss>, beutel: MutableList<Beutel>){
+
+    fun angriff(helden: MutableList<Held>, boese: MutableList<Endboss>, beutel: MutableList<Beutel>) {
         if (hp < 0) {
             hp = 0
         }
-        println("      ___       ___  ___  __   __             __   ___ \n" +
-                "|__| |__  |    |__  |__  |__) |__) |  | |\\ | |  \\ |__  \n" +
-                "|  | |___ |___ |    |___ |  \\ |  \\ \\__/ | \\| |__/ |___ \n" +
-                "                                                       ")
-        var randomAttack = Random.nextInt(1,4)
-        when(randomAttack){
+        println(
+            "      ___       ___  ___  __   __             __   ___ \n" +
+                    "|__| |__  |    |__  |__  |__) |__) |  | |\\ | |  \\ |__  \n" +
+                    "|  | |___ |___ |    |___ |  \\ |  \\ \\__/ | \\| |__/ |___ \n" +
+                    "                                                       "
+        )
+        var randomAttack = Random.nextInt(1, 4)
+        when (randomAttack) {
 
             1 -> kick(helden)
             2 -> punsh(helden)

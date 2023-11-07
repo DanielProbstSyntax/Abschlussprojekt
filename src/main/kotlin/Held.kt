@@ -1,6 +1,6 @@
 open class Held(
     var name: String,
-    var hp: Int,
+    var maxHp: Int,
 
     var weapon: String,
     var atk: Int,
@@ -10,8 +10,9 @@ open class Held(
     var verflucht: Boolean = false
 ) {
     var besiegt:Boolean = false
-    val maxHp: Int = hp
-    var flüche = 0
+    var hp: Int = maxHp
+
+
 
 
 
@@ -31,10 +32,10 @@ open class Held(
                 if (beutel[input].anzahl <= 0) beutel.removeAt(input) else beutel[input].anzahl -=1
 
 
-                hp += 50
+                maxHp += 50
                 println(
                     "$name hat den Heiltrank gewählt." +
-                            " Seine Lebenspunkte sind jetzt bei $hp HP."
+                            " Seine Lebenspunkte sind jetzt bei $maxHp HP."
                 )
             }
 

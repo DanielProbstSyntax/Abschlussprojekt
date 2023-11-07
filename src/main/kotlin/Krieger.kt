@@ -1,10 +1,9 @@
-import Böse.Drache
 import Böse.Endboss
 import kotlin.random.Random
 
 class Krieger(
     name: String,
-    hp: Int,
+    maxHp: Int,
     weapon: String,
     atk: Int,
     var crit: Int,
@@ -12,11 +11,11 @@ class Krieger(
     stealth: Boolean,
     ausweichen: Boolean
 ) :
-    Held(name, hp, weapon, atk, shild, stealth, ausweichen) {
+    Held(name, maxHp, weapon, atk, shild, stealth, ausweichen) {
     var battleShout = 1
 
     override fun toString(): String {
-        return "$name: hat $hp Lebenspunkte und kämpft mit einer $weapon"
+        return "$name: hat $maxHp Lebenspunkte, $atk Angriffskraft und kämpft mit einer $weapon"
     }
 
 
@@ -93,9 +92,7 @@ class Krieger(
     }
 
     fun angriffe(endboss: Endboss, team: MutableList<Held>, beutel: MutableList<Beutel>, boese: MutableList<Endboss>) {
-        if (hp < 0) {
-            hp = 0
-        }
+
         if (verflucht && hp > maxHp * 0.2) {
             var schaden = maxHp * 0.1
             hp - schaden
@@ -104,7 +101,7 @@ class Krieger(
         }
         if (verflucht && hp < maxHp * 0.2) {
             verflucht = false
-            flüche = 0
+             endboss.flüche = 0
             println("Der Fluch ist abgelaufen und verursacht keinen Schaden mehr")
             Thread.sleep(800)
         }
@@ -115,7 +112,7 @@ class Krieger(
         println("$name ist jetzt dran")
         println("__ __ __ __ __ __ __ ")
         if (!besiegt) {
-            if (endboss.helfer && helfer.hp <= 0){
+            if (endboss.helfer && helfer.hp <= 0) {
                 endboss.helfer = false
                 println("Der Helfer wurde besiegt")
                 Thread.sleep(800)
@@ -124,18 +121,7 @@ class Krieger(
 
             if (endboss.helfer) {
 
-                Thread.sleep(500)
-                println("Wähle eine Aktion")
-                Thread.sleep(500)
-                println("1 für Schild-Block")
-                Thread.sleep(500)
-                println("2 für Kopfnuss")
-                Thread.sleep(500)
-                println("3 für Brutaler Schlag")
-                Thread.sleep(500)
-                println("4 für Kampfschrei")
-                Thread.sleep(500)
-                println("5 für Trank benutzen")
+                chooseAktion()
                 var x = readln().toInt()
                 when (x) {
                     1 -> shildblock()
@@ -149,18 +135,7 @@ class Krieger(
 
             } else {
 
-                Thread.sleep(500)
-                println("Wähle eine Aktion")
-                Thread.sleep(500)
-                println("1 für Schild-Block")
-                Thread.sleep(500)
-                println("2 für Kopfnuss")
-                Thread.sleep(500)
-                println("3 für Brutaler Schlag")
-                Thread.sleep(500)
-                println("4 für Kampfschrei")
-                Thread.sleep(500)
-                println("5 für Trank benutzen")
+                chooseAktion()
                 println("__ __ __ __ __ __ __ ")
                 var x = readln().toInt()
                 when (x) {
@@ -171,25 +146,47 @@ class Krieger(
                     5 -> usePotion(beutel)
 
                 }
-                if (verflucht) {
-                    var schaden = maxHp * 0.1
-                    hp - schaden
-                    println("Es wurden $schaden Schaden durch einen Fluch verursacht")
-                    Thread.sleep(800)
-                }
+//                if (verflucht) {
+//                    while (hp > maxHp * 0.20) {
+//                        val schaden = (maxHp * 0.10).toInt()
+//                        hp -= schaden
+//                        println("${name} verliert $schaden% seiner HP durch den Fluch.")
+//                    }
+//                    var schaden = maxHp * 0.1
+//                    hp - schaden
+//                    println("Es wurden $schaden Schaden durch einen Fluch verursacht")
+//                    Thread.sleep(800)
+//                }
             }
 
         } else println("$name ist Tot und und kann nicht mehr kämpfen")
 
-        if (endboss.helfer && helfer.hp <= 0){
+        if (endboss.helfer && helfer.hp <= 0) {
             endboss.helfer = false
-            println("      ___       ___  ___  __      __   ___  __     ___  __  ___ \n" +
-                    "|__| |__  |    |__  |__  |__)    |__) |__  /__` | |__  / _`  |  \n" +
-                    "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ | |___ \\__>  |  \n" +
-                    "                                                                ")
+            println(
+                "      ___       ___  ___  __      __   ___  __     ___  __  ___ \n" +
+                        "|__| |__  |    |__  |__  |__)    |__) |__  /__` | |__  / _`  |  \n" +
+                        "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ | |___ \\__>  |  \n" +
+                        "                                                                "
+            )
             Thread.sleep(800)
         }
 
+    }
+
+    private fun chooseAktion() {
+        Thread.sleep(500)
+        println("Wähle eine Aktion")
+        Thread.sleep(500)
+        println("1 für Schild-Block")
+        Thread.sleep(500)
+        println("2 für Kopfnuss")
+        Thread.sleep(500)
+        println("3 für Brutaler Schlag")
+        Thread.sleep(500)
+        println("4 für Kampfschrei")
+        Thread.sleep(500)
+        println("5 für Trank benutzen")
     }
 
 

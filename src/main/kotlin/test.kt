@@ -13,20 +13,45 @@ fun main() {
     var helfer = Helfer("Gustav der böse", 50, 0, "Schwert", false)
     var drache = Drache("Dämon Inferno", 1000, 0, "Dämonen Schwert", false)
     val alleBoesen: MutableList<Endboss> = mutableListOf(
-        drache,helfer
+        drache, helfer
     )
-    var heiltrank = Heiltrank("Heiltrank",3)
-    var staerkungstrank = Stärkungstrank("Stärkungstrank",1)
-    var alleTraenke : MutableList<Beutel> = mutableListOf(heiltrank,staerkungstrank)
+    var heiltrank = Heiltrank("Heiltrank", 3)
+    var staerkungstrank = Stärkungstrank("Stärkungstrank", 1)
+    var alleTraenke: MutableList<Beutel> = mutableListOf(heiltrank, staerkungstrank)
+
+
+    var userName: String = ""
 
 
 
-    var userName : String = ""
 
+    println("                                               _   __,----'~~~~~~~~~`-----.__\n" +
+            "                                        .  .    `//====-              ____,-'~`\n" +
+            "                        -.            \\_|/ .   /||\\\\  `~~~~`---.___./\n" +
+            "                  ______-==.       _-~o  `\\/    |||  \\\\           _,'`\n" +
+            "            __,--'   ,=='||\\=_    ;_,_,/ _-'|-   |`\\   \\\\        ,'\n" +
+            "         _-'      ,='    | \\\\`.    '',/~7  /-   /  ||   `\\.     /\n" +
+            "       .'       ,'       |  \\\\  \\_  \"  /  /-   /   ||      \\   /\n" +
+            "      / _____  /         |     \\\\.`-_/  /|- _/   ,||       \\ /\n" +
+            "     ,-'     `-|--'~~`--_ \\     `==-/  `| \\'--===-'       _/`\n" +
+            "               '         `-|      /|    )-'\\~'      _,--\"'\n" +
+            "                           '-~^\\_/ |    |   `\\_   ,^             \\\n" +
+            "                                /  \\     \\__   \\/~               `\\__\n" +
+            "                            _,-' _/'\\ ,-'~____-'`-/                 ``===\\\n" +
+            "                           ((->/'    \\|||' `.     `\\.  ,                _||\n" +
+            "             ./                       \\_     `\\      `~---|__i__i__\\--~'_/\n" +
+            "            <_n_                     __-^-_    `)  \\-.______________,-~'\n" +
+            "             `B'\\)                  ///,-'~`__--^-  |-------~~~~^'\n" +
+            "             /^>                           ///,--~`-\\\n" +
+            "            `  `                                       ")
+    println()
+    println()
+    println("      ___  __   __   ___  __                __      __   __        __   __       \n" +
+            "|__| |__  |__) /  \\ |__  /__`     /\\  |\\ | |  \\    |  \\ |__)  /\\  / _` /  \\ |\\ | \n" +
+            "|  | |___ |  \\ \\__/ |___ .__/    /~~\\ | \\| |__/    |__/ |  \\ /~~\\ \\__> \\__/ | \\| \n" +
+            "                                                                                 ")
+    println("Willkommen zu Heroes and Dragon, bitte gib deinen Namen ein")
 
-
-
-    println("Willkommen zu meinen RPG, bitte gib deinen Namen ein")
     Thread.sleep(800)
     userName = readln()
     Thread.sleep(800)
@@ -48,9 +73,11 @@ fun main() {
         1 -> {
             println("Spiel wird gestartet. $userName,")
             Thread.sleep(800)
-            println("        ___          ___  __   ___  __        __  \n" +
-                    "\\  / | |__  |       |__  |__) |__  /  \\ |    / _` \n" +
-                    " \\/  | |___ |___    |___ |  \\ |    \\__/ |___ \\__> \n")
+            println(
+                "        ___          ___  __   ___  __        __  \n" +
+                        "\\  / | |__  |       |__  |__) |__  /  \\ |    / _` \n" +
+                        " \\/  | |___ |___    |___ |  \\ |    \\__/ |___ \\__> \n"
+            )
             println("im Kamp gegen ${drache.name}.")
             println("__ __ __ __ __ __ __ ")
             Thread.sleep(800)
@@ -82,62 +109,70 @@ fun main() {
 
         var runde = 1
 
-            println("Runde: $runde")
+        println("Runde: $runde")
         println("__ __ __ __ __ __ __ ")
         while (true) {
 
-            krieger.angriffe(drache,alleHelden,alleTraenke,alleBoesen)
+            krieger.angriffe(drache, alleHelden, alleTraenke, alleBoesen)
+            println("__ __ __ __ __ __ __ ")
+            statsHelden(alleHelden)
+            if (drache.hp <= 0 && !drache.helfer) {
+                drache.dracheBesiegt()
+                println("${krieger.name} hat ${drache.name} getötet")
+                break
+            }
+            println("__ __ __ __ __ __ __ ")
+            magier.angriffe(drache, alleHelden, alleBoesen, alleTraenke)
+            if (drache.hp <= 0 && !drache.helfer) {
+                drache.dracheBesiegt()
+                println("${magier.name} hat ${drache.name} getötet")
+                break
+            }
             println("__ __ __ __ __ __ __ ")
             statsHelden(alleHelden)
             println("__ __ __ __ __ __ __ ")
-            magier.angriffe(drache, alleHelden, alleBoesen,alleTraenke)
+            schurke.angriffe(drache, alleTraenke, alleBoesen)
+            if (drache.hp <= 0 && !drache.helfer) {
+                drache.dracheBesiegt()
+                println("${schurke.name} hat ${drache.name} getötet")
+                break
+            }
             println("__ __ __ __ __ __ __ ")
             statsHelden(alleHelden)
             println("__ __ __ __ __ __ __ ")
-            schurke.angriffe(drache,alleTraenke,alleBoesen)
-            println("__ __ __ __ __ __ __ ")
-            statsHelden(alleHelden)
-            println("__ __ __ __ __ __ __ ")
-            if (drache.helfer == true){
-                helfer.angriff(alleHelden,alleBoesen,alleTraenke)
-            }else drache.angriff(alleHelden)
+            if (drache.helfer == true) {
+                helfer.angriff(alleHelden, alleBoesen, alleTraenke)
+            } else drache.angriff(alleHelden)
             println("__ __ __ __ __ __ __ ")
             statsHelden(alleHelden)
             println("__ __ __ __ __ __ __ ")
 
-            if (helfer.hp <= 0){
+            if (helfer.hp <= 0) {
                 drache.helfer = false
             }
 
-            if (krieger.hp <= 0){
+            if (krieger.maxHp <= 0) {
                 krieger.tot()
                 println("${krieger.name} ist im Kampf gefallen ")
 
             }
-            if (magier.hp <= 0){
+            if (magier.maxHp <= 0) {
                 magier.tot()
                 println("${magier.name} ist im Kamp gefallen ")
 
             }
-            if (schurke.hp <= 0){
+            if (schurke.maxHp <= 0) {
                 schurke.tot()
                 println("${schurke.name} ist im Kamp gefallen ")
 
             }
-            if (alleHelden.all { it.hp <= 0 }) {
+            if (alleHelden.all { it.maxHp <= 0 }) {
                 println("Der Drache hat gewonnen!")
                 break
             }
-            if (drache.hp <= 0) {
-                drache.dracheBesiegt()
-                println("Die Helden haben gewonnen!")
-                break
-            }
+
 
             runde++
-
-
-
 
 
         }

@@ -27,22 +27,13 @@ fun statsHelden(team: MutableList<Held>) {
     }
 
 
-
 }
-fun statsBoese(boese: MutableList<Endboss>){
+
+fun statsBoese(boese: MutableList<Endboss>) {
     for (i in boese.indices) {
         println(boese[i])
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 //fun schildCheck(helden: MutableList<Held>,boese: MutableList<Endboss>){
