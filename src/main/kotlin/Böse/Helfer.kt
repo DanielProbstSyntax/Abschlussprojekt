@@ -119,6 +119,10 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
         if (hp < 0) {
             hp = 0
         }
+        println("      ___       ___  ___  __   __             __   ___ \n" +
+                "|__| |__  |    |__  |__  |__) |__) |  | |\\ | |  \\ |__  \n" +
+                "|  | |___ |___ |    |___ |  \\ |  \\ \\__/ | \\| |__/ |___ \n" +
+                "                                                       ")
         var randomAttack = Random.nextInt(1,4)
         when(randomAttack){
 

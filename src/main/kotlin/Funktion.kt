@@ -1,28 +1,24 @@
 import Böse.Endboss
 
 fun select(team: MutableList<Held>): Held {
-
     var count = 1
-
     for (i in team) {
         println("Tippe $count für ${i.name}")
+        Thread.sleep(800)
         count++
     }
     var input = readln().toInt()
-
     when (input) {
         1 -> team[0]
         2 -> team[1]
         3 -> team[2]
 
     }
-
     while (input > team.size || input == 0) {
         println("Falsche Eingabe, versuche es nochmal")
         input = readln().toInt()
     }
     return team[input - 1]
-
 }
 
 fun statsHelden(team: MutableList<Held>) {

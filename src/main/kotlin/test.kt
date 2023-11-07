@@ -11,7 +11,7 @@ fun main() {
 
     )
     var helfer = Helfer("Gustav der böse", 50, 0, "Schwert", false)
-    var drache = Drache("Dämon Infernothor", 1000, 0, "Dämonen Schwert", false)
+    var drache = Drache("Dämon Inferno", 1000, 0, "Dämonen Schwert", false)
     val alleBoesen: MutableList<Endboss> = mutableListOf(
         drache,helfer
     )
@@ -30,23 +30,30 @@ fun main() {
     Thread.sleep(800)
     userName = readln()
     Thread.sleep(800)
-    println("Ok $userName, viel Spass beim spielen ")
+    println("Hallo $userName, wähle eine der folgenden Aktionen")
     Thread.sleep(800)
-    println("Willst du ein neues Spiel starten ? ")
+    println("1 für Spiel starten")
     Thread.sleep(800)
-    println("1 für JA")
-    Thread.sleep(800)
-    println("2 für Nein")
+    println("2 für Abbruch")
     Thread.sleep(800)
     println("3 für Infos über das Spiel")
+    Thread.sleep(800)
 
 
     var input = readln().toInt()
 
 
+
     when (input) {
         1 -> {
-            println("Spiel wird gestartet. $userName, viel Erfolg im Kamp gegen ${drache.name}.")
+            println("Spiel wird gestartet. $userName,")
+            Thread.sleep(800)
+            println("        ___          ___  __   ___  __        __  \n" +
+                    "\\  / | |__  |       |__  |__) |__  /  \\ |    / _` \n" +
+                    " \\/  | |___ |___    |___ |  \\ |    \\__/ |___ \\__> \n")
+            println("im Kamp gegen ${drache.name}.")
+            println("__ __ __ __ __ __ __ ")
+            Thread.sleep(800)
         }
 
         2 -> {
@@ -74,19 +81,29 @@ fun main() {
     if (input == 1) {
 
         var runde = 1
-            println("Das Spiel hat begonnen. Runde: $runde")
+
+            println("Runde: $runde")
+        println("__ __ __ __ __ __ __ ")
         while (true) {
 
             krieger.angriffe(drache,alleHelden,alleTraenke,alleBoesen)
+            println("__ __ __ __ __ __ __ ")
             statsHelden(alleHelden)
+            println("__ __ __ __ __ __ __ ")
             magier.angriffe(drache, alleHelden, alleBoesen,alleTraenke)
+            println("__ __ __ __ __ __ __ ")
             statsHelden(alleHelden)
+            println("__ __ __ __ __ __ __ ")
             schurke.angriffe(drache,alleTraenke,alleBoesen)
+            println("__ __ __ __ __ __ __ ")
             statsHelden(alleHelden)
+            println("__ __ __ __ __ __ __ ")
             if (drache.helfer == true){
                 helfer.angriff(alleHelden,alleBoesen,alleTraenke)
             }else drache.angriff(alleHelden)
+            println("__ __ __ __ __ __ __ ")
             statsHelden(alleHelden)
+            println("__ __ __ __ __ __ __ ")
 
             if (helfer.hp <= 0){
                 drache.helfer = false
