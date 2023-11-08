@@ -30,9 +30,9 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             println("....")
             Thread.sleep(1500)
             println("PATSCH, in youuur FACE")
-            held.maxHp -= schaden
+            held.hp -= schaden
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.maxHp}")
+            println("Er hat jetzt noch ${held.hp}")
 
         } else {
             schaden = (10..15).random() + atk
@@ -42,9 +42,9 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             Thread.sleep(1500)
             println("ABER")
             println("${held.name} hebt schnell sein Schild und blockt etwas Schaden ab")
-            held.maxHp -= schaden
+            held.hp -= schaden
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.maxHp}")
+            println("Er hat jetzt noch ${held.hp}")
             held.shild = false
 
         }
@@ -88,11 +88,11 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             Thread.sleep(1500)
             println("BAFFFF, $held klatschen auf den Boden und rutschen 5 m weit.")
             for (i in helden.indices) {
-                helden[i].maxHp - schaden
+                helden[i].hp - schaden
             }
             println("$held wurden $schaden HP abgezogen")
             for (i in helden.indices) {
-                println("Sie haben jetzt noch ${helden[i].maxHp}")
+                println("Sie haben jetzt noch ${helden[i].hp}")
             }
             for (i in helden.indices) {
                 helden[i].shild = false
@@ -106,11 +106,11 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             Thread.sleep(1500)
             println("BAFFFF, $held klatschen auf den Boden und rutschen 5 m weit.")
             for (i in helden.indices) {
-                helden[i].maxHp - schaden
+                helden[i].hp - schaden
             }
             println("$held wurden $schaden HP abgezogen")
             for (i in helden.indices) {
-                println("Sie haben jetzt noch ${helden[i].maxHp}")
+                println("Sie haben jetzt noch ${helden[i].hp}")
             }
 
         }

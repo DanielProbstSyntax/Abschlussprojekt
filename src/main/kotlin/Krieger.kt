@@ -139,6 +139,7 @@ class Krieger(
 
         if (!besiegt) {
             println("$name ist jetzt dran")
+            println("Seine HP sind: $hp")
             println("__ __ __ __ __ __ __ ")
             if (endboss.helfer && helfer.hp <= 0) {
                 endboss.helfer = false

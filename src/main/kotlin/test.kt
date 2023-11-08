@@ -11,7 +11,7 @@ fun main() {
 
     )
     var helfer = Helfer("Gustav der böse", 50, 0, "Schwert", false)
-    var drache = Drache("Dämon Inferno", 1000, 70, "Dämonen Schwert", false)
+    var drache = Drache("Dämon Inferno", 1000, 0, "Dämonen Schwert", false)
     val alleBoesen: MutableList<Endboss> = mutableListOf(
         drache, helfer
     )
@@ -156,25 +156,25 @@ fun main() {
                 drache.helfer = false
             }
 
-            if (krieger.maxHp <= 0) {
+            if (krieger.hp <= 0) {
                 krieger.tot()
                 println("${krieger.name} ist im Kampf gefallen ")
                 println("__ __ __ __ __ __ __ ")
 
             }
-            if (magier.maxHp <= 0) {
+            if (magier.hp <= 0) {
                 magier.tot()
                 println("${magier.name} ist im Kamp gefallen ")
                 println("__ __ __ __ __ __ __ ")
 
             }
-            if (schurke.maxHp <= 0) {
+            if (schurke.hp <= 0) {
                 schurke.tot()
                 println("${schurke.name} ist im Kamp gefallen ")
                 println("__ __ __ __ __ __ __ ")
 
             }
-            if (alleHelden.all { it.maxHp <= 0 }) {
+            if (alleHelden.all { it.hp <= 0 }) {
                 println("Der Drache hat gewonnen!")
                 break
             }

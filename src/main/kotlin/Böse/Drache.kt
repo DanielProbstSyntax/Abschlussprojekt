@@ -25,14 +25,11 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             println("Die Erde bebt")
             Thread.sleep(800)
             println("ZAAAACK")
-            held.maxHp -= schaden
-            if (held.maxHp < 0) {
-                held.maxHp = 0
-            }
+            held.hp -= schaden
             Thread.sleep(800)
             println("__ __ __ __ __ __ __ ")
             println("${held.name} wurden $schaden HP abgezogen")
-            println("${held.name} hat jetzt noch ${held.maxHp}")
+            println("${held.name} hat jetzt noch ${held.hp}")
             Thread.sleep(800)
 
         } else {
@@ -43,25 +40,24 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             Thread.sleep(800)
             println("ZAAAACK")
             println("__ __ __ __ __ __ __ ")
-            println("  |`-._/\\_.-`|\n" +
-                    "  |    ||    |\n" +
-                    "  |___o()o___|\n" +
-                    "  |__((<>))__|\n" +
-                    " \\   o\\/o   /\n" +
-                    "  \\   ||   /\n" +
-                    "   \\  ||  /\n" +
-                    "     '.||.'\n" +
-                    "                ``")
+            println(
+                "  |`-._/\\_.-`|\n" +
+                        "  |    ||    |\n" +
+                        "  |___o()o___|\n" +
+                        "  |__((<>))__|\n" +
+                        " \\   o\\/o   /\n" +
+                        "  \\   ||   /\n" +
+                        "   \\  ||  /\n" +
+                        "     '.||.'\n" +
+                        "                ``"
+            )
             println("__ __ __ __ __ __ __ ")
             println("${held.name} Blockt durch das Schild etwas Schaden vom Angriff")
             Thread.sleep(800)
-            held.maxHp -= schaden
-            if (held.maxHp < 0) {
-                held.maxHp = 0
-            }
+            held.hp -= schaden
             println("__ __ __ __ __ __ __ ")
             println("${held.name} wurden $schaden HP abgezogen")
-            println("${held.name} hat jetzt noch ${held.maxHp}")
+            println("${held.name} hat jetzt noch ${held.hp}")
             held.shild = false
             Thread.sleep(800)
 
@@ -73,43 +69,45 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         val held = helden.random()
         var schaden = (20..30).random() + atk
         if (!held.shild) {
-            println("$name dreht sich einmal schnell im Kreis und schlägt mit deinem Stachelbesetzten Schwanz zu")
+            println("$name dreht sich einmal schnell im Kreis und schlägt ${held.name} mit seinem Stachelbesetzten Schwanz zu")
             Thread.sleep(800)
             println("....")
             Thread.sleep(800)
             println("ZISCHHH wie eine Peitsche")
             Thread.sleep(800)
-            held.maxHp -= schaden
+            held.hp -= schaden
             println("__ __ __ __ __ __ __ ")
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.maxHp}")
+            println("Er hat jetzt noch ${held.hp}")
             Thread.sleep(800)
 
         } else {
             schaden = (10..15).random() + atk
-            println("$name dreht sich einmal schnell im Kreis und schlägt mit deinem Stachelbesetzten Schwanz zu")
+            println("$name dreht sich einmal schnell im Kreis und schlägt ${held.name} mit seinem Stachelbesetzten Schwanz zu")
             Thread.sleep(500)
             println("....")
             Thread.sleep(800)
             println("ZISCHHH wie eine Peitsche")
             Thread.sleep(800)
             println("__ __ __ __ __ __ __ ")
-            println("  |`-._/\\_.-`|\n" +
-                    "  |    ||    |\n" +
-                    "  |___o()o___|\n" +
-                    "  |__((<>))__|\n" +
-                    " \\   o\\/o   /\n" +
-                    "  \\   ||   /\n" +
-                    "   \\  ||  /\n" +
-                    "     '.||.'\n" +
-                    "                ``")
+            println(
+                "  |`-._/\\_.-`|\n" +
+                        "  |    ||    |\n" +
+                        "  |___o()o___|\n" +
+                        "  |__((<>))__|\n" +
+                        " \\   o\\/o   /\n" +
+                        "  \\   ||   /\n" +
+                        "   \\  ||  /\n" +
+                        "     '.||.'\n" +
+                        "                ``"
+            )
             println("__ __ __ __ __ __ __ ")
             println("${held.name} aber, Blockt durch sein Schild etwas Schaden vom Angriff")
             Thread.sleep(800)
-            held.maxHp -= schaden
+            held.hp -= schaden
             println("__ __ __ __ __ __ __ ")
             println("${held.name} wurden $schaden HP abgezogen")
-            println("Er hat jetzt noch ${held.maxHp}")
+            println("Er hat jetzt noch ${held.hp}")
             held.shild = false
 
         }
@@ -124,7 +122,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         Thread.sleep(800)
         var schaden = (10..15).random() + atk
         for (i in helden.indices) {
-            helden[i].maxHp -= schaden
+            helden[i].hp -= schaden
         }
         println("__ __ __ __ __ __ __ ")
         println("Den Helden wurden $schaden Lebenspunkte abgezogen")
@@ -139,28 +137,30 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         var schaden = (20..25).random() + atk
         for (held in helden) {
             if (!held.shild) {
-                held.maxHp -= schaden
+                held.hp -= schaden
                 println("__ __ __ __ __ __ __ ")
-                println("${held.name} wurde $schaden zugefügt")
+                println("${held.name} wurde $schaden Schaden zugefügt")
                 Thread.sleep(800)
 
             } else {
                 println("__ __ __ __ __ __ __ ")
-                println("  |`-._/\\_.-`|\n" +
-                        "  |    ||    |\n" +
-                        "  |___o()o___|\n" +
-                        "  |__((<>))__|\n" +
-                        "  \\   o\\/o   /\n" +
-                        "   \\   ||   /\n" +
-                        "    \\  ||  /\n" +
-                        "      '.||.'\n ")
+                println(
+                    "  |`-._/\\_.-`|\n" +
+                            "  |    ||    |\n" +
+                            "  |___o()o___|\n" +
+                            "  |__((<>))__|\n" +
+                            "  \\   o\\/o   /\n" +
+                            "   \\   ||   /\n" +
+                            "    \\  ||  /\n" +
+                            "      '.||.'\n "
+                )
 
                 println("__ __ __ __ __ __ __ ")
                 Thread.sleep(800)
                 println("${held.name} hatte ein Schild aktiv und reduziert damit den Schaden")
                 Thread.sleep(800)
                 schaden = (20..25).random() + atk - 10
-                held.maxHp -= schaden
+                held.hp -= schaden
                 println("__ __ __ __ __ __ __ ")
                 println("${held.name} wurde $schaden Schaden zugefügt")
 
@@ -169,7 +169,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         }
     }
 
-    fun minion() {
+    fun minion(helden: MutableList<Held>) {
 
         if (minion > 0) {
             println("__ __ __ __ __ __ __ ")
@@ -182,7 +182,30 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             println("__ __ __ __ __ __ __ ")
             helfer = true
             minion = 0
-        } else println("Keine Kraft mehr um den Helfer zu beschwören")
+        } else {
+            println("Der Drache ist zu schwach um einen neuen Helfer zu beschwören. Er greift trotzdem an!!!")
+            if (flüche == 1) {
+                val randomAttack = Random.nextInt(1, 5)
+                when (randomAttack) {
+                    1 -> spikeShot(helden)
+                    2 -> tailWhip(helden)
+                    3 -> firebreath(helden)
+                    4 -> earthquake(helden)
+                    5 -> fluch(helden)
+                }
+            } else {
+                val randomAttack = Random.nextInt(1, 4)
+                when (randomAttack) {
+                    1 -> spikeShot(helden)
+                    2 -> tailWhip(helden)
+                    3 -> firebreath(helden)
+                    4 -> earthquake(helden)
+
+                }
+
+            }
+
+        }
 
 
     }
@@ -220,6 +243,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         )
         println("__ __ __ __ __ __ __ ")
         Thread.sleep(800)
+
         if (flüche == 1) {
             //val randomAttack = Random.nextInt(1, 6)
             val randomAttack = 6
@@ -230,42 +254,22 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
                 2 -> tailWhip(helden)
                 3 -> firebreath(helden)
                 4 -> earthquake(helden)
-                5 -> minion()
+                5 -> minion(helden)
                 6 -> fluch(helden)
             }
         } else {
+
             val randomAttack = Random.nextInt(1, 5)
             when (randomAttack) {
                 1 -> spikeShot(helden)
                 2 -> tailWhip(helden)
                 3 -> firebreath(helden)
                 4 -> earthquake(helden)
-                5 -> minion()
+                5 -> minion(helden)
             }
 
         }
-        if (helfer) {
-            val randomAttack = Random.nextInt(1, 5)
 
-            when (randomAttack) {
-                1 -> spikeShot(helden)
-                2 -> tailWhip(helden)
-                3 -> firebreath(helden)
-                4 -> earthquake(helden)
-                5 -> minion()
-                6 -> fluch(helden)
-            }
-        } else {
-            val randomAttack = Random.nextInt(1, 4)
-            when (randomAttack) {
-                1 -> spikeShot(helden)
-                2 -> tailWhip(helden)
-                3 -> firebreath(helden)
-                4 -> earthquake(helden)
-                5 -> minion()
-            }
-
-        }
     }
 
     fun dracheBesiegt() {

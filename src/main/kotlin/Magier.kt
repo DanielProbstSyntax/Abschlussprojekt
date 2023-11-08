@@ -20,10 +20,10 @@ class Magier(
         Thread.sleep(800)
         var targetHeal = select(team)
         Thread.sleep(800)
-        targetHeal.maxHp += 20
+        targetHeal.hp += 20
         println("__ __ __ __ __ __ __ ")
         println("${targetHeal.name} wurde um 20 geheilt")
-        println("Er hat jetzt ${targetHeal.maxHp} Lebenspunkte")
+        println("Er hat jetzt ${targetHeal.hp} Lebenspunkte")
         Thread.sleep(800)
 
 
@@ -108,13 +108,13 @@ class Magier(
     ) {
 
 
-        if (verflucht && maxHp > hp * 0.2) {
+        if (verflucht && hp > maxHp * 0.2) {
             var schaden = maxHp * 0.1
-            maxHp - schaden
+            hp - schaden
             println("Durch den Fluch von ${endboss.name} hat $name $schaden HP verloren ")
             Thread.sleep(800)
         }
-        if (verflucht && maxHp < hp * 0.2) {
+        if (verflucht && hp < maxHp * 0.2) {
             verflucht = false
             endboss.flüche = 0
             println("Der Fluch ist abgelaufen und verursacht keinen Schaden mehr")
@@ -126,6 +126,7 @@ class Magier(
         var drache = alleBoesen[0]
         if (!besiegt) {
             println("$name ist jetzt dran")
+            println("Ihre HP sind: $hp")
             println("__ __ __ __ __ __ __ ")
             if (endboss.helfer && helfer.hp <= 0) {
                 endboss.helfer = false
@@ -159,11 +160,6 @@ class Magier(
             }
         }
 
-        if (verflucht) {
-            var schaden = maxHp * 0.1
-            maxHp - schaden
-            println("Es wurden $schaden Schaden durch einen Fluch verursacht")
-        }
         if (endboss.helfer && helfer.hp <= 0) {
             endboss.helfer = false
             println(

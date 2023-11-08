@@ -32,10 +32,10 @@ open class Held(
                 if (beutel[input].anzahl <= 0) beutel.removeAt(input) else beutel[input].anzahl -=1
 
 
-                maxHp += 50
+                hp += 50
                 println(
                     "$name hat den Heiltrank gewählt." +
-                            " Seine Lebenspunkte sind jetzt bei $maxHp HP."
+                            " Seine Lebenspunkte sind jetzt bei $hp HP."
                 )
             }
 

@@ -149,6 +149,7 @@ class Schurke(
         var drache = boese[0]
         if (!besiegt) {
             println("$name ist jetzt dran")
+            println("Seine HP sind: $hp")
             println("__ __ __ __ __ __ __ ")
 
             if (endboss.helfer) {
