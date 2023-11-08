@@ -1,3 +1,24 @@
+                                               _   __,----'~~~~~~~~~`-----.__
+                                        .  .    `//====-              ____,-'~`
+                        -.            \_|// .   /||\\  `~~~~`---.___./
+                  ______-==.       _-~o  `\/    |||  \\           _,'`
+            __,--'   ,=='||\=_    ;_,_,/ _-'|-   |`\   \\        ,'
+         _-'      ,='    | \\`.    '',/~7  /-   /  ||   `\.     /
+       .'       ,'       |  \\  \_  "  /  /-   /   ||      \   /
+      / _____  /         |     \\.`-_/  /|- _/   ,||       \ /
+     ,-'     `-|--'~~`--_ \     `==-/  `| \'--===-'       _/`
+               '         `-|      /|    )-'\~'      _,--"'
+                           '-~^\_/ |    |   `\_   ,^             /\
+                                /  \     \__   \/~               `\__
+                            _,-' _/'\ ,-'~____-'`-/                 ``===\
+                           ((->/'    \|||' `.     `\.  ,                _||
+             ./                       \_     `\      `~---|__i__i__\--~'_/
+            <_n_                     __-^-_    `)  \-.______________,-~'
+             `B'\)                  ///,-'~`__--^-  |-------~~~~^'
+             /^>                           ///,--~`-\
+            `  `                                       
+
+
 # Heroes and Dragon
 
 **Heroes and Dragon** ist ein aufregendes rundenbasiertes Rollenspiel, das in Kotlin entwickelt wurde. In diesem Spiel kämpfst du mit einem Team von drei mächtigen Helden - Hugo, Selina und Schlitzohr - gegen den gefährlichen Drachen Infernotor und seinen hinterhältigen Helfer Gustav der Böse. Kannst du den Drachen besiegen und das Königreich retten?
@@ -28,4 +49,5 @@ Das Hauptziel von "Heroes and Dragon" ist es, den Drachen Infernotor zu besiegen
 Die Steuerung des Spiels erfolgt über die Eingabe von Zahlen auf deiner Tastatur. Die genaue Zuordnung der Zahlen zu den Aktionen wird im Spiel erklärt.
 
 GG
+
 ![Bildschirmfoto 2023-10-31 um 09 03 50](https://github.com/DanielProbstSyntax/Abschlussprojekt/assets/144678294/a22a1e51-5971-4a1a-acbf-0360e6381ae6)
