@@ -15,11 +15,23 @@ class Krieger(
     var battleShout = 1
 
     override fun toString(): String {
-        return "$name: hat $maxHp Lebenspunkte, $atk Angriffskraft und kämpft mit einer $weapon"
+        return "$name: hat $hp Lebenspunkte, $atk Angriffskraft und kämpft mit einer $weapon"
     }
 
 
     fun shildblock() {
+        println("__ __ __ __ __ __ __ ")
+        println("  |`-._/\\_.-`|\n" +
+                "  |    ||    |\n" +
+                "  |___o()o___|\n" +
+                "  |__((<>))__|\n" +
+                " \\   o\\/o   /\n" +
+                "  \\   ||   /\n" +
+                "   \\  ||  /\n" +
+                "     '.||.'\n" +
+                "                ``")
+        println("__ __ __ __ __ __ __ ")
+        Thread.sleep(800)
         println("$name hebt sein Schild um den nächsten Angriff zu Blocken")
         shild = true
         Thread.sleep(800)
@@ -88,6 +100,21 @@ class Krieger(
 
     fun tot() {
         besiegt = true
+        println("                              /`._      ,\n" +
+                "                             /     \\   / \\\n" +
+                "                             ) ,-==-> /\\/ \\\n" +
+                "                              )__\\\\/ // \\  |\n" +
+                "                             /  /' \\//   | |\n" +
+                "                            /  (  /|/    | /\n" +
+                "                           /     //|    /,'\n" +
+                "                          // /  (( )    '\n" +
+                "                         //     // \\    |\n" +
+                "                        //     (#) |\n" +
+                "                       /        )\\/ \\   '       ____\n" +
+                "                      /        /#/   )         /,.__\\__,,--=_,\n" +
+                "                     /         \\#\\  /)      __/ + \\____,--==<\n" +
+                "                     //gnv_____/#/_/'      (\\_\\__+/_,   ---<^\n" +
+                "                                                    '==--=='")
 
     }
 
@@ -109,9 +136,10 @@ class Krieger(
 
         var helfer = boese[1]
         var drache = boese[0]
-        println("$name ist jetzt dran")
-        println("__ __ __ __ __ __ __ ")
+
         if (!besiegt) {
+            println("$name ist jetzt dran")
+            println("__ __ __ __ __ __ __ ")
             if (endboss.helfer && helfer.hp <= 0) {
                 endboss.helfer = false
                 println("Der Helfer wurde besiegt")

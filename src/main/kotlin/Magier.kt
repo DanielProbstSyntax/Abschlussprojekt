@@ -12,7 +12,7 @@ class Magier(
 ) :
     Held(name, maxHp, weapon, atk, shild, stealth, ausweichen) {
     override fun toString(): String {
-        return "$name: hat $maxHp Lebenspunkte, $atk Angriffskraft und kämpft mit einem $weapon"
+        return "$name: hat $hp Lebenspunkte, $atk Angriffskraft und kämpft mit einem $weapon"
     }
 
     fun heal(team: MutableList<Held>) {
@@ -30,6 +30,18 @@ class Magier(
     }
 
     fun shild() {
+        println("__ __ __ __ __ __ __ ")
+        println("  |`-._/\\_.-`|\n" +
+                "  |    ||    |\n" +
+                "  |___o()o___|\n" +
+                "  |__((<>))__|\n" +
+                "  \\   o\\/o   /\n" +
+                "   \\   ||   /\n" +
+                "    \\  ||  /\n" +
+                "      '.||.'\n ")
+
+        println("__ __ __ __ __ __ __ ")
+        Thread.sleep(800)
         println("$name erschafft eine Eisschild im sich um etwas schaden zu blocken")
         shild = true
         Thread.sleep(800)
@@ -70,7 +82,22 @@ class Magier(
 
     fun tot() {
         besiegt = true
-        //println("$name wurde besiegt!")
+        println("                              /`._      ,\n" +
+                "                             /     \\   / \\\n" +
+                "                             ) ,-==-> /\\/ \\\n" +
+                "                              )__\\\\/ // \\  |\n" +
+                "                             /  /' \\//   | |\n" +
+                "                            /  (  /|/    | /\n" +
+                "                           /     //|    /,'\n" +
+                "                          // /  (( )    '\n" +
+                "                         //     // \\    |\n" +
+                "                        //     (#) |\n" +
+                "                       /        )\\/ \\   '       ____\n" +
+                "                      /        /#/   )         /,.__\\__,,--=_,\n" +
+                "                     /         \\#\\  /)      __/ + \\____,--==<\n" +
+                "                     //gnv_____/#/_/'      (\\_\\__+/_,   ---<^\n" +
+                "                                                    '==--=='")
+
     }
 
     fun angriffe(
@@ -80,16 +107,14 @@ class Magier(
         beutel: MutableList<Beutel>
     ) {
 
-        if (maxHp < 0) {
-            maxHp = 0
-        }
-        if (verflucht && hp > maxHp * 0.2) {
+
+        if (verflucht && maxHp > hp * 0.2) {
             var schaden = maxHp * 0.1
-            hp - schaden
+            maxHp - schaden
             println("Durch den Fluch von ${endboss.name} hat $name $schaden HP verloren ")
             Thread.sleep(800)
         }
-        if (verflucht && hp < maxHp * 0.2) {
+        if (verflucht && maxHp < hp * 0.2) {
             verflucht = false
             endboss.flüche = 0
             println("Der Fluch ist abgelaufen und verursacht keinen Schaden mehr")
@@ -99,9 +124,9 @@ class Magier(
 
         var helfer = alleBoesen[1]
         var drache = alleBoesen[0]
-        println("$name ist jetzt dran")
-        println("__ __ __ __ __ __ __ ")
         if (!besiegt) {
+            println("$name ist jetzt dran")
+            println("__ __ __ __ __ __ __ ")
             if (endboss.helfer && helfer.hp <= 0) {
                 endboss.helfer = false
                 println("Der Helfer wurde besiegt")

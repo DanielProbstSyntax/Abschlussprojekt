@@ -11,7 +11,7 @@ fun main() {
 
     )
     var helfer = Helfer("Gustav der böse", 50, 0, "Schwert", false)
-    var drache = Drache("Dämon Inferno", 1000, 0, "Dämonen Schwert", false)
+    var drache = Drache("Dämon Inferno", 1000, 70, "Dämonen Schwert", false)
     val alleBoesen: MutableList<Endboss> = mutableListOf(
         drache, helfer
     )
@@ -109,9 +109,10 @@ fun main() {
 
         var runde = 1
 
-        println("Runde: $runde")
-        println("__ __ __ __ __ __ __ ")
+
         while (true) {
+            println("Runde: $runde")
+            println("__ __ __ __ __ __ __ ")
 
             krieger.angriffe(drache, alleHelden, alleTraenke, alleBoesen)
             println("__ __ __ __ __ __ __ ")
@@ -135,6 +136,10 @@ fun main() {
             if (drache.hp <= 0 && !drache.helfer) {
                 drache.dracheBesiegt()
                 println("${schurke.name} hat ${drache.name} getötet")
+                println(" __                       __  ___     __   ___       __             ___      \n" +
+                        "|  \\ |  |    |__|  /\\  /__`  |     / _` |__  |  | /  \\ |\\ | |\\ | |__  |\\ | \n" +
+                        "|__/ \\__/    |  | /~~\\ .__/  |     \\__> |___ |/\\| \\__/ | \\| | \\| |___ | \\| \n" +
+                        "                                                                           ")
                 break
             }
             println("__ __ __ __ __ __ __ ")
@@ -154,16 +159,19 @@ fun main() {
             if (krieger.maxHp <= 0) {
                 krieger.tot()
                 println("${krieger.name} ist im Kampf gefallen ")
+                println("__ __ __ __ __ __ __ ")
 
             }
             if (magier.maxHp <= 0) {
                 magier.tot()
                 println("${magier.name} ist im Kamp gefallen ")
+                println("__ __ __ __ __ __ __ ")
 
             }
             if (schurke.maxHp <= 0) {
                 schurke.tot()
                 println("${schurke.name} ist im Kamp gefallen ")
+                println("__ __ __ __ __ __ __ ")
 
             }
             if (alleHelden.all { it.maxHp <= 0 }) {

@@ -42,6 +42,17 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             println("Die Erde bebt")
             Thread.sleep(800)
             println("ZAAAACK")
+            println("__ __ __ __ __ __ __ ")
+            println("  |`-._/\\_.-`|\n" +
+                    "  |    ||    |\n" +
+                    "  |___o()o___|\n" +
+                    "  |__((<>))__|\n" +
+                    " \\   o\\/o   /\n" +
+                    "  \\   ||   /\n" +
+                    "   \\  ||  /\n" +
+                    "     '.||.'\n" +
+                    "                ``")
+            println("__ __ __ __ __ __ __ ")
             println("${held.name} Blockt durch das Schild etwas Schaden vom Angriff")
             Thread.sleep(800)
             held.maxHp -= schaden
@@ -82,6 +93,17 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             Thread.sleep(800)
             println("ZISCHHH wie eine Peitsche")
             Thread.sleep(800)
+            println("__ __ __ __ __ __ __ ")
+            println("  |`-._/\\_.-`|\n" +
+                    "  |    ||    |\n" +
+                    "  |___o()o___|\n" +
+                    "  |__((<>))__|\n" +
+                    " \\   o\\/o   /\n" +
+                    "  \\   ||   /\n" +
+                    "   \\  ||  /\n" +
+                    "     '.||.'\n" +
+                    "                ``")
+            println("__ __ __ __ __ __ __ ")
             println("${held.name} aber, Blockt durch sein Schild etwas Schaden vom Angriff")
             Thread.sleep(800)
             held.maxHp -= schaden
@@ -114,13 +136,37 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
     fun earthquake(helden: MutableList<Held>) {
         println("Plötzlich springt der Drache hoch in die Luft, schwingt einmal stark mit deinen Flügeln und")
         println("rast auf den Boden zu. Als er aufkommt entsteht ein heftiges Erdbeben")
-        var schaden = (10..15).random() + atk
-        for (i in helden.indices) {
-            helden[i].maxHp -= (10..15).random() + atk
-            println("__ __ __ __ __ __ __ ")
-            println("${helden[i].name} wurde $schaden zugefügt")
-        }
+        var schaden = (20..25).random() + atk
+        for (held in helden) {
+            if (!held.shild) {
+                held.maxHp -= schaden
+                println("__ __ __ __ __ __ __ ")
+                println("${held.name} wurde $schaden zugefügt")
+                Thread.sleep(800)
 
+            } else {
+                println("__ __ __ __ __ __ __ ")
+                println("  |`-._/\\_.-`|\n" +
+                        "  |    ||    |\n" +
+                        "  |___o()o___|\n" +
+                        "  |__((<>))__|\n" +
+                        "  \\   o\\/o   /\n" +
+                        "   \\   ||   /\n" +
+                        "    \\  ||  /\n" +
+                        "      '.||.'\n ")
+
+                println("__ __ __ __ __ __ __ ")
+                Thread.sleep(800)
+                println("${held.name} hatte ein Schild aktiv und reduziert damit den Schaden")
+                Thread.sleep(800)
+                schaden = (20..25).random() + atk - 10
+                held.maxHp -= schaden
+                println("__ __ __ __ __ __ __ ")
+                println("${held.name} wurde $schaden Schaden zugefügt")
+
+            }
+
+        }
     }
 
     fun minion() {
@@ -148,7 +194,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         if (!held.verflucht && flüche == 1) {
             println("__ __ __ __ __ __ __ ")
             println(
-                " ___            __       \n" +
+                "         ___            __       \n" +
                         "|__  |    |  | /  ` |__| \n" +
                         "|    |___ \\__/ \\__, |  | \n" +
                         "                         "
@@ -167,7 +213,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
         println("__ __ __ __ __ __ __ ")
         println(
-            " __   __   __   __   __             __   ___ \n" +
+            "         __   __   __   __   __             __   ___ \n" +
                     "|__) /  \\ /__` /__` |__) |  | |\\ | |  \\ |__  \n" +
                     "|__) \\__/ .__/ .__/ |  \\ \\__/ | \\| |__/ |___ \n" +
                     "                                             "
@@ -175,7 +221,9 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         println("__ __ __ __ __ __ __ ")
         Thread.sleep(800)
         if (flüche == 1) {
-            val randomAttack = Random.nextInt(1, 6)
+            //val randomAttack = Random.nextInt(1, 6)
+            val randomAttack = 6
+
 
             when (randomAttack) {
                 1 -> spikeShot(helden)
@@ -196,11 +244,33 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             }
 
         }
+        if (helfer) {
+            val randomAttack = Random.nextInt(1, 5)
+
+            when (randomAttack) {
+                1 -> spikeShot(helden)
+                2 -> tailWhip(helden)
+                3 -> firebreath(helden)
+                4 -> earthquake(helden)
+                5 -> minion()
+                6 -> fluch(helden)
+            }
+        } else {
+            val randomAttack = Random.nextInt(1, 4)
+            when (randomAttack) {
+                1 -> spikeShot(helden)
+                2 -> tailWhip(helden)
+                3 -> firebreath(helden)
+                4 -> earthquake(helden)
+                5 -> minion()
+            }
+
+        }
     }
 
     fun dracheBesiegt() {
         println(
-            " __   __        __        ___     __   ___  __     ___  __  ___ \n" +
+            "         __   __        __        ___     __   ___  __     ___  __  ___ \n" +
                     "|  \\ |__)  /\\  /  ` |__| |__     |__) |__  /__` | |__  / _`  |  \n" +
                     "|__/ |  \\ /~~\\ \\__, |  | |___    |__) |___ .__/ | |___ \\__>  |  \n" +
                     "                                                                "

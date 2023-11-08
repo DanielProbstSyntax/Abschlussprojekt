@@ -15,7 +15,7 @@ class Schurke(
 
 
     override fun toString(): String {
-        return "$name: hat $maxHp Lebenspunkte, $atk Angriffskraft und kämpft mit einem $weapon"
+        return "$name: hat $hp Lebenspunkte, $atk Angriffskraft und kämpft mit einem $weapon"
     }
 
     fun hinterhalt(endboss: Endboss) {
@@ -143,12 +143,13 @@ class Schurke(
             Thread.sleep(800)
         }
 
-        println("$name ist jetzt dran")
-        println("__ __ __ __ __ __ __ ")
+
         Thread.sleep(800)
         var helfer = boese[1]
         var drache = boese[0]
         if (!besiegt) {
+            println("$name ist jetzt dran")
+            println("__ __ __ __ __ __ __ ")
 
             if (endboss.helfer) {
 
@@ -177,18 +178,7 @@ class Schurke(
                 }
 
             }
-//            if (verflucht) {
-//                 if (hp > maxHp * 0.20) {
-//                     val schaden = (maxHp * 0.10).toInt()
-//                     hp -= schaden
-//                     println("${name} verliert $schaden% seiner HP durch den Fluch.")
-//                 }
 
-//                var schaden = maxHp * 0.1
-//                hp - schaden
-//                println("Es wurden $schaden Schaden durch einen Fluch verursacht")
-//                Thread.sleep(800)
-//            }
             if (endboss.helfer && helfer.hp <= 0) {
                 endboss.helfer = false
                 println(
@@ -211,7 +201,7 @@ class Schurke(
         Thread.sleep(400)
         println("2 für Kritischer Treffer")
         Thread.sleep(400)
-        println("3 für Ausweichen")
+        println("3 für Glühende Klinge")
         Thread.sleep(400)
         println("4 für Dolchhieb")
         Thread.sleep(400)
@@ -221,7 +211,21 @@ class Schurke(
 
     fun tot() {
         besiegt = true
-        //println("$name wurde besiegt!")
+        println("                              /`._      ,\n" +
+                "                             /     \\   / \\\n" +
+                "                             ) ,-==-> /\\/ \\\n" +
+                "                              )__\\\\/ // \\  |\n" +
+                "                             /  /' \\//   | |\n" +
+                "                            /  (  /|/    | /\n" +
+                "                           /     //|    /,'\n" +
+                "                          // /  (( )    '\n" +
+                "                         //     // \\    |\n" +
+                "                        //     (#) |\n" +
+                "                       /        )\\/ \\   '       ____\n" +
+                "                      /        /#/   )         /,.__\\__,,--=_,\n" +
+                "                     /         \\#\\  /)      __/ + \\____,--==<\n" +
+                "                     //gnv_____/#/_/'      (\\_\\__+/_,   ---<^\n" +
+                "                                                    '==--=='")
     }
 }
 
