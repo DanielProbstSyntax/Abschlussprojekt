@@ -6,11 +6,10 @@ class Schurke(
     maxHp: Int,
     weapon: String,
     atk: Int,
-    stealth: Boolean,
     var crit: Int,
     shild: Boolean = false,
-    ausweichen: Boolean
-) : Held(name, maxHp, weapon, atk, stealth, shild, ausweichen) {
+    verflucht: Boolean
+) : Held(name, maxHp, weapon, atk,shild,verflucht) {
 
 
 
@@ -131,8 +130,8 @@ class Schurke(
     fun angriffe(endboss: Endboss, beutel: MutableList<Beutel>, boese: MutableList<Endboss>) {
 
         if (verflucht && hp > maxHp * 0.2) {
-            var schaden = maxHp * 0.1
-            hp - schaden
+            var schaden = (maxHp * 0.1).toInt()
+            hp -= schaden
             println("Durch den Fluch von ${endboss.name} hat $name $schaden HP verloren ")
             Thread.sleep(800)
         }

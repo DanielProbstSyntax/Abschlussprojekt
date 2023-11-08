@@ -4,10 +4,8 @@ open class Held(
 
     var weapon: String,
     var atk: Int,
-    var stealth: Boolean = true,
     var shild: Boolean,
-    var ausweichen: Boolean,
-    var verflucht: Boolean = false
+    var verflucht: Boolean
 ) {
     var besiegt:Boolean = false
     var hp: Int = maxHp

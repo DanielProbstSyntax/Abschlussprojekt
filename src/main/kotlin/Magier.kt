@@ -7,10 +7,10 @@ class Magier(
     atk: Int,
     shild: Boolean = false,
     var crit: Int,
-    stealth: Boolean,
-    ausweichen: Boolean
+    verflucht: Boolean
+
 ) :
-    Held(name, maxHp, weapon, atk, shild, stealth, ausweichen) {
+    Held(name, maxHp, weapon, atk, shild,verflucht) {
     override fun toString(): String {
         return "$name: hat $hp Lebenspunkte, $atk Angriffskraft und kämpft mit einem $weapon"
     }
@@ -109,8 +109,8 @@ class Magier(
 
 
         if (verflucht && hp > maxHp * 0.2) {
-            var schaden = maxHp * 0.1
-            hp - schaden
+            var schaden = (maxHp * 0.1).toInt()
+            hp -= schaden
             println("Durch den Fluch von ${endboss.name} hat $name $schaden HP verloren ")
             Thread.sleep(800)
         }

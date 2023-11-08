@@ -3,9 +3,9 @@ import Böse.Endboss
 import Böse.Helfer
 
 fun main() {
-    var krieger = Krieger("Hugo", 200, "Axt", 0, crit = 50, false, false, false)
-    var magier = Magier("Selina", 150, "Zauberstab", 0, false, 0, false, false)
-    var schurke = Schurke("Schlitzohr", 100, "Dolch", 0, false, 50, false, false)
+    var krieger = Krieger("Hugo", 200, "Axt", 0, crit = 50, false,false)
+    var magier = Magier("Selina", 150, "Zauberstab", 0, false, 0, false)
+    var schurke = Schurke("Schlitzohr", 100, "Dolch", 0,50,false,false)
     val alleHelden: MutableList<Held> = mutableListOf(
         krieger, magier, schurke
 

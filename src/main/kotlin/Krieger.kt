@@ -8,10 +8,10 @@ class Krieger(
     atk: Int,
     var crit: Int,
     shild: Boolean,
-    stealth: Boolean,
-    ausweichen: Boolean
+    verflucht: Boolean
+
 ) :
-    Held(name, maxHp, weapon, atk, shild, stealth, ausweichen) {
+    Held(name, maxHp, weapon, atk, shild,verflucht) {
     var battleShout = 1
 
     override fun toString(): String {
@@ -25,10 +25,10 @@ class Krieger(
                 "  |    ||    |\n" +
                 "  |___o()o___|\n" +
                 "  |__((<>))__|\n" +
-                " \\   o\\/o   /\n" +
-                "  \\   ||   /\n" +
-                "   \\  ||  /\n" +
-                "     '.||.'\n" +
+                "  \\   o\\/o   /\n" +
+                "   \\   ||   /\n" +
+                "    \\  ||  /\n" +
+                "      '.||.'\n" +
                 "                ``")
         println("__ __ __ __ __ __ __ ")
         Thread.sleep(800)
@@ -55,7 +55,7 @@ class Krieger(
     }
 
     fun brutalSmash(endboss: Endboss) {
-        //val drache=boese.first // <---- NOCHMAL ABCHECKEN
+
         val criticalHit = Random.nextInt(1, 101) <= crit
         var schaden = (30..60).random() + atk
         if (criticalHit) {
@@ -121,8 +121,8 @@ class Krieger(
     fun angriffe(endboss: Endboss, team: MutableList<Held>, beutel: MutableList<Beutel>, boese: MutableList<Endboss>) {
 
         if (verflucht && hp > maxHp * 0.2) {
-            var schaden = maxHp * 0.1
-            hp - schaden
+            var schaden = (maxHp * 0.1).toInt()
+            hp -= schaden
             println("Durch den Fluch von ${endboss.name} hat $name $schaden HP verloren ")
             Thread.sleep(800)
         }
@@ -163,7 +163,6 @@ class Krieger(
 
 
             } else {
-
                 chooseAktion()
                 println("__ __ __ __ __ __ __ ")
                 var x = readln().toInt()
@@ -175,17 +174,7 @@ class Krieger(
                     5 -> usePotion(beutel)
 
                 }
-//                if (verflucht) {
-//                    while (hp > maxHp * 0.20) {
-//                        val schaden = (maxHp * 0.10).toInt()
-//                        hp -= schaden
-//                        println("${name} verliert $schaden% seiner HP durch den Fluch.")
-//                    }
-//                    var schaden = maxHp * 0.1
-//                    hp - schaden
-//                    println("Es wurden $schaden Schaden durch einen Fluch verursacht")
-//                    Thread.sleep(800)
-//                }
+
             }
 
         } else println("$name ist Tot und und kann nicht mehr kämpfen")
@@ -193,7 +182,7 @@ class Krieger(
         if (endboss.helfer && helfer.hp <= 0) {
             endboss.helfer = false
             println(
-                "      ___       ___  ___  __      __   ___  __     ___  __  ___ \n" +
+                "         ___       ___  ___  __   __      ___  __   ___   __   ___ \n" +
                         "|__| |__  |    |__  |__  |__)    |__) |__  /__` | |__  / _`  |  \n" +
                         "|  | |___ |___ |    |___ |  \\    |__) |___ .__/ | |___ \\__>  |  \n" +
                         "                                                                "
@@ -217,6 +206,20 @@ class Krieger(
         Thread.sleep(500)
         println("5 für Trank benutzen")
     }
+//    fun chooseAktion2(){
+//        Thread.sleep(500)
+//        println("Wähle eine Aktion")
+//        Thread.sleep(500)
+//        println("1 für Schild-Block")
+//        Thread.sleep(500)
+//        println("2 für Kopfnuss")
+//        Thread.sleep(500)
+//        println("3 für Brutaler Schlag")
+//        Thread.sleep(500)
+//        println("4 für Kampfschrei")
+//        Thread.sleep(500)
+//        println("5 für Trank benutzen")
+//    }
 
 
 }

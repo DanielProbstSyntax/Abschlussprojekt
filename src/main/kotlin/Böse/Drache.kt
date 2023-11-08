@@ -184,6 +184,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
             minion = 0
         } else {
             println("Der Drache ist zu schwach um einen neuen Helfer zu beschwören. Er greift trotzdem an!!!")
+            println("__ __ __ __ __ __ __ ")
             if (flüche == 1) {
                 val randomAttack = Random.nextInt(1, 5)
                 when (randomAttack) {
@@ -215,9 +216,9 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
         val held = helden.random()
         if (!held.verflucht && flüche == 1) {
-            println("__ __ __ __ __ __ __ ")
+
             println(
-                "         ___            __       \n" +
+                " ___            __       \n" +
                         "|__  |    |  | /  ` |__| \n" +
                         "|    |___ \\__/ \\__, |  | \n" +
                         "                         "
@@ -234,9 +235,9 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
     fun angriff(helden: MutableList<Held>) {
 
-        println("__ __ __ __ __ __ __ ")
+
         println(
-            "         __   __   __   __   __             __   ___ \n" +
+            " __   __   __   __   __             __   ___ \n" +
                     "|__) /  \\ /__` /__` |__) |  | |\\ | |  \\ |__  \n" +
                     "|__) \\__/ .__/ .__/ |  \\ \\__/ | \\| |__/ |___ \n" +
                     "                                             "
@@ -245,10 +246,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
         Thread.sleep(800)
 
         if (flüche == 1) {
-            //val randomAttack = Random.nextInt(1, 6)
-            val randomAttack = 6
-
-
+            val randomAttack = Random.nextInt(1, 6)
             when (randomAttack) {
                 1 -> spikeShot(helden)
                 2 -> tailWhip(helden)
@@ -258,7 +256,6 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
                 6 -> fluch(helden)
             }
         } else {
-
             val randomAttack = Random.nextInt(1, 5)
             when (randomAttack) {
                 1 -> spikeShot(helden)
@@ -274,7 +271,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
     fun dracheBesiegt() {
         println(
-            "         __   __        __        ___     __   ___  __     ___  __  ___ \n" +
+            "         __    __         __        ___     __   ___  __     ___  __  ___ \n" +
                     "|  \\ |__)  /\\  /  ` |__| |__     |__) |__  /__` | |__  / _`  |  \n" +
                     "|__/ |  \\ /~~\\ \\__, |  | |___    |__) |___ .__/ | |___ \\__>  |  \n" +
                     "                                                                "
