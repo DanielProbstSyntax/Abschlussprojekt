@@ -19,7 +19,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
         if (!held.shild) {
 
-            val schaden = (20..30).random() + atk
+            val schaden = (15..20).random() + atk
             println("$name hebt seine Arme in die Luft und erschafft unter ${held.name} spitze Stacheln")
             Thread.sleep(800)
             println("Die Erde bebt")
@@ -67,7 +67,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
 
     fun tailWhip(helden: MutableList<Held>) {
         val held = helden.random()
-        var schaden = (20..30).random() + atk
+        var schaden = (15..20).random() + atk
         if (!held.shild) {
             println("$name dreht sich einmal schnell im Kreis und schlägt ${held.name} mit seinem Stachelbesetzten Schwanz zu")
             Thread.sleep(800)
@@ -118,6 +118,24 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
     fun firebreath(helden: MutableList<Held>) {
         println("Der Drache $name holt tiieeeffff Luft uuuund ...")
         Thread.sleep(800)
+        println("                          .\n" +
+                "                          /  , /\n" +
+                "                        ,/' /`'\n" +
+                "                       /(/`'   _\n" +
+                "                      f'/)  ,-'\n" +
+                "                     /    ,' itz\n" +
+                "                    f,/  /\n" +
+                "                    /\"  7\n" +
+                "                   / ,f /\n" +
+                "              )   / / |J\n" +
+                "                 7,( ;|j\n" +
+                "      ,       (. \"`/ ('\n" +
+                "          `    )`-'/ l `\n" +
+                "    (  (    ) '   ' (_,'  )\n" +
+                " (     ,)  7`  /  /,  (, (\n" +
+                "  ,  ) (,- `-'  /  (,   -') (\n" +
+                " (_ ( `-_(,_,'_(_(__ )_, _`-_, _")
+        Thread.sleep(800)
         println("trifft alle Helden mit seinem Flammenatem")
         Thread.sleep(800)
         var schaden = (10..15).random() + atk
@@ -134,7 +152,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
     fun earthquake(helden: MutableList<Held>) {
         println("Plötzlich springt der Drache hoch in die Luft, schwingt einmal stark mit deinen Flügeln und")
         println("rast auf den Boden zu. Als er aufkommt entsteht ein heftiges Erdbeben")
-        var schaden = (20..25).random() + atk
+        var schaden = (10..15).random() + atk
         for (held in helden) {
             if (!held.shild) {
                 held.hp -= schaden
@@ -159,7 +177,7 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
                 Thread.sleep(800)
                 println("${held.name} hatte ein Schild aktiv und reduziert damit den Schaden")
                 Thread.sleep(800)
-                schaden = (20..25).random() + atk - 10
+                schaden = (5..10).random() + atk
                 held.hp -= schaden
                 println("__ __ __ __ __ __ __ ")
                 println("${held.name} wurde $schaden Schaden zugefügt")
@@ -270,12 +288,10 @@ class Drache(name: String, hp: Int, override var atk: Int, weapon: String, headb
     }
 
     fun dracheBesiegt() {
-        println(
-            "         __    __         __        ___     __   ___  __     ___  __  ___ \n" +
-                    "|  \\ |__)  /\\  /  ` |__| |__     |__) |__  /__` | |__  / _`  |  \n" +
-                    "|__/ |  \\ /~~\\ \\__, |  | |___    |__) |___ .__/ | |___ \\__>  |  \n" +
-                    "                                                                "
-        )
+        println(" __   __        __        ___     __   ___  __     ___  __  ___ \n" +
+                "|  \\ |__)  /\\  /  ` |__| |__     |__) |__  /__` | |__  / _`  |  \n" +
+                "|__/ |  \\ /~~\\ \\__, |  | |___    |__) |___ .__/ | |___ \\__>  |  \n" +
+                "                                                                ")
 
     }
 

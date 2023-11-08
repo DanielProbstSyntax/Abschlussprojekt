@@ -20,7 +20,7 @@ class Magier(
         Thread.sleep(800)
         var targetHeal = select(team)
         Thread.sleep(800)
-        targetHeal.hp += 20
+        targetHeal.hp += 40
         println("__ __ __ __ __ __ __ ")
         println("${targetHeal.name} wurde um 20 geheilt")
         println("Er hat jetzt ${targetHeal.hp} Lebenspunkte")

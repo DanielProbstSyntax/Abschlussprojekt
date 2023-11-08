@@ -23,7 +23,7 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
 
     fun punsh(helden: MutableList<Held>) {
         val held = helden.random()
-        var schaden = (20..30).random() + atk
+        var schaden = (10..15).random() + atk
         if (!held.shild) {
             println("$name rennt auf ${held.name} zu und gibt ihm einen harten Schlag ins Gesicht")
             Thread.sleep(500)
@@ -35,7 +35,7 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             println("Er hat jetzt noch ${held.hp}")
 
         } else {
-            schaden = (10..15).random() + atk
+            schaden = (5..10).random() + atk
             println("$name rennt auf ${held.name} zu und will ihm einen schlag ins Gesicht geben")
             Thread.sleep(500)
             println("....")
@@ -78,7 +78,7 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
 
     fun kick(helden: MutableList<Held>) {
         val held = helden.random()
-        var schaden = (20..30).random() + atk
+        var schaden = (15..20).random() + atk
         if (held.shild) {
             println("$name springt in die Luft und gibt allen Helden einen heftigen Roundhousekick")
             Thread.sleep(800)
@@ -86,13 +86,9 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             Thread.sleep(500)
             println("....")
             Thread.sleep(1500)
-            println("BAFFFF, $held klatschen auf den Boden und rutschen 5 m weit.")
+            println("BAFFFF,die Helden klatschen auf den Boden und rutschen 5 m weit.")
             for (i in helden.indices) {
                 helden[i].hp - schaden
-            }
-            println("$held wurden $schaden HP abgezogen")
-            for (i in helden.indices) {
-                println("Sie haben jetzt noch ${helden[i].hp}")
             }
             for (i in helden.indices) {
                 helden[i].shild = false
@@ -104,13 +100,9 @@ class Helfer(name: String, hp: Int, atk: Int, weapon: String, headbutt: Boolean)
             Thread.sleep(500)
             println("....")
             Thread.sleep(1500)
-            println("BAFFFF, $held klatschen auf den Boden und rutschen 5 m weit.")
+            println("BAFFFF, die Helden klatschen auf den Boden und rutschen 5 m weit.")
             for (i in helden.indices) {
                 helden[i].hp - schaden
-            }
-            println("$held wurden $schaden HP abgezogen")
-            for (i in helden.indices) {
-                println("Sie haben jetzt noch ${helden[i].hp}")
             }
 
         }

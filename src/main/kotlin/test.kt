@@ -71,7 +71,22 @@ fun main() {
 
     when (input) {
         1 -> {
-            println("Wähle eine Schwierigkeit")
+            println("Noob oder Pro, du entscheidest :)")
+            when (chooseDifficulti()) {
+                1 -> {
+                    drache.atk = 0
+                    krieger.maxHp + 30
+                    magier.maxHp +  30
+                    schurke.maxHp + 30
+                }
+                2 -> {
+                    drache.atk = 20
+                    helfer.hp += 200
+                    helfer.atk = 20
+                }
+
+
+            }
             println("Spiel wird gestartet. $userName,")
             Thread.sleep(800)
             println(
@@ -100,6 +115,7 @@ fun main() {
             var input2 = readln().toInt()
             if (input2 == 1) {
                 input = 1
+
 
             }
 
@@ -137,7 +153,7 @@ fun main() {
             if (drache.hp <= 0 && !drache.helfer) {
                 drache.dracheBesiegt()
                 println("${schurke.name} hat ${drache.name} getötet")
-                println(" __                       __  ___     __   ___       __             ___      \n" +
+                println(" __                     __  ___     __   ___       __             ___      \n" +
                         "|  \\ |  |    |__|  /\\  /__`  |     / _` |__  |  | /  \\ |\\ | |\\ | |__  |\\ | \n" +
                         "|__/ \\__/    |  | /~~\\ .__/  |     \\__> |___ |/\\| \\__/ | \\| | \\| |___ | \\| \n" +
                         "                                                                           ")
