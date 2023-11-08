@@ -4,13 +4,13 @@ import Böse.Helfer
 
 fun main() {
     var krieger = Krieger("Hugo", 200, "Axt", 0, crit = 50, false,false)
-    var magier = Magier("Selina", 150, "Zauberstab", 0, false, 0, false)
-    var schurke = Schurke("Schlitzohr", 100, "Dolch", 0,50,false,false)
+    var magier = Magier("Selina", 100, "Zauberstab", 0, false, 0, false)
+    var schurke = Schurke("Schlitzohr", 150, "Dolch", 0,50,false,false)
     val alleHelden: MutableList<Held> = mutableListOf(
         krieger, magier, schurke
 
     )
-    var helfer = Helfer("Gustav der böse", 50, 0, "Schwert", false)
+    var helfer = Helfer("Gustav der böse", 500, 0, "Schwert", false)
     var drache = Drache("Dämon Inferno", 1000, 0, "Dämonen Schwert", false)
     val alleBoesen: MutableList<Endboss> = mutableListOf(
         drache, helfer
@@ -71,6 +71,7 @@ fun main() {
 
     when (input) {
         1 -> {
+            println("Wähle eine Schwierigkeit")
             println("Spiel wird gestartet. $userName,")
             Thread.sleep(800)
             println(

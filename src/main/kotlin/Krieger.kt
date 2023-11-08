@@ -59,6 +59,10 @@ class Krieger(
         val criticalHit = Random.nextInt(1, 101) <= crit
         var schaden = (30..60).random() + atk
         if (criticalHit) {
+            println(" __   __    ___ \n" +
+                    "/  ` |__) |  |  \n" +
+                    "\\__, |  \\ |  |  \n" +
+                    "                ")
             println("$name macht einen Kritischen Treffer mit seinen Brutalen Schlag(Doppelter Schaden")
             Thread.sleep(800)
             println("BÄäÄääÄääÄÄÄÄM")
@@ -150,9 +154,9 @@ class Krieger(
 
             if (endboss.helfer) {
 
-                chooseAktion()
-                var x = readln().toInt()
-                when (x) {
+                //chooseAktion()
+                //var x = readln().toInt()
+                when (eingabeAktionKrieger()) {
                     1 -> shildblock()
                     2 -> headbutt(helfer)
                     3 -> brutalSmash(helfer)
@@ -163,10 +167,9 @@ class Krieger(
 
 
             } else {
-                chooseAktion()
-                println("__ __ __ __ __ __ __ ")
-                var x = readln().toInt()
-                when (x) {
+                //chooseAktion()
+                //var x = readln().toInt()
+                when (eingabeAktionKrieger()) {
                     1 -> shildblock()
                     2 -> headbutt(drache)
                     3 -> brutalSmash(drache)
@@ -192,20 +195,20 @@ class Krieger(
 
     }
 
-    private fun chooseAktion() {
-        Thread.sleep(500)
-        println("Wähle eine Aktion")
-        Thread.sleep(500)
-        println("1 für Schild-Block")
-        Thread.sleep(500)
-        println("2 für Kopfnuss")
-        Thread.sleep(500)
-        println("3 für Brutaler Schlag")
-        Thread.sleep(500)
-        println("4 für Kampfschrei")
-        Thread.sleep(500)
-        println("5 für Trank benutzen")
-    }
+//        fun chooseAktion() {
+//        Thread.sleep(500)
+//        println("Wähle eine Aktion")
+//        Thread.sleep(500)
+//        println("1 für Schild-Block")
+//        Thread.sleep(500)
+//        println("2 für Kopfnuss")
+//        Thread.sleep(500)
+//        println("3 für Brutaler Schlag")
+//        Thread.sleep(500)
+//        println("4 für Kampfschrei")
+//        Thread.sleep(500)
+//        println("5 für Trank benutzen")
+//    }
 //    fun chooseAktion2(){
 //        Thread.sleep(500)
 //        println("Wähle eine Aktion")
@@ -220,6 +223,9 @@ class Krieger(
 //        Thread.sleep(500)
 //        println("5 für Trank benutzen")
 //    }
+
+
+
 
 
 

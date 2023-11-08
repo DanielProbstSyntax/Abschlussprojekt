@@ -133,10 +133,10 @@ class Magier(
                 println("Der Helfer wurde besiegt")
             }
             if (endboss.helfer) {
-                chooseAktion()
-                println("__ __ __ __ __ __ __ ")
-                var x = readln().toInt()
-                when (x) {
+//                chooseAktion()
+//                println("__ __ __ __ __ __ __ ")
+//                var x = readln().toInt()
+                when (eingabeAktionMagier()) {
                     1 -> heal(helden)
                     2 -> shild()
                     3 -> lavaBurst(helfer)
@@ -147,9 +147,9 @@ class Magier(
 
 
             } else {
-                chooseAktion()
-                var x = readln().toInt()
-                when (x) {
+                //chooseAktion()
+                //var x = readln().toInt()
+                when (eingabeAktionMagier()) {
                     1 -> heal(helden)
                     2 -> shild()
                     3 -> lavaBurst(drache)
@@ -173,19 +173,19 @@ class Magier(
 
     }
 
-    private fun chooseAktion() {
-        println("Wähle eine Aktion")
-        Thread.sleep(500)
-        println("1 für Heilen")
-        Thread.sleep(500)
-        println("2 für Eis-Schild")
-        Thread.sleep(500)
-        println("3 für Lava Schlag")
-        Thread.sleep(500)
-        println("4 für Eisregen")
-        Thread.sleep(500)
-        println("5 um den Beutel zu öffnen")
-    }
+//    private fun chooseAktion() {
+//        println("Wähle eine Aktion")
+//        Thread.sleep(500)
+//        println("1 für Heilen")
+//        Thread.sleep(500)
+//        println("2 für Eis-Schild")
+//        Thread.sleep(500)
+//        println("3 für Lava Schlag")
+//        Thread.sleep(500)
+//        println("4 für Eisregen")
+//        Thread.sleep(500)
+//        println("5 um den Beutel zu öffnen")
+//    }
 
 
 }

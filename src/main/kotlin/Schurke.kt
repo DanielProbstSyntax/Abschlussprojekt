@@ -24,6 +24,10 @@ class Schurke(
         if (criticalHit) {
             println("$name macht sich unsichtbar, schleicht sich hinter ${drache.name} und ...")
             Thread.sleep(800)
+            println(" __   __    ___ \n" +
+                    "/  ` |__) |  |  \n" +
+                    "\\__, |  \\ |  |  \n" +
+                    "                ")
             println("... sticht mit einen Kritischen Treffer mehrere male schnell zu.(doppelter Schaden)")
             Thread.sleep(800)
             schaden *= 2
@@ -52,6 +56,10 @@ class Schurke(
         val criticalHit = Random.nextInt(1, 101) <= 100
         var schaden = (30..60).random() + atk
         if (criticalHit) {
+            println(" __   __    ___ \n" +
+                    "/  ` |__) |  |  \n" +
+                    "\\__, |  \\ |  |  \n" +
+                    "                ")
             println("$name wetzt seine Klinge am $weapon um einen garantiert Kritischen Treffer zu erziehlen.(doppelter Schaden)")
             Thread.sleep(800)
             println("${endboss.name} bekommt den $weapon in sein Fleisch gerammt")
@@ -153,9 +161,9 @@ class Schurke(
 
             if (endboss.helfer) {
 
-                chooseAktion()
-                var x = readln().toInt()
-                when (x) {
+                //chooseAktion()
+                //var x = readln().toInt()
+                when (eingabeAktionSchurke()) {
                     1 -> hinterhalt(helfer)
                     2 -> critHit(helfer)
                     3 -> glühendeKlinge(helfer)
@@ -165,9 +173,9 @@ class Schurke(
                 }
 
             } else {
-                chooseAktion()
-                var x = readln().toInt()
-                when (x) {
+                //chooseAktion()
+                //var x = readln().toInt()
+                when (eingabeAktionSchurke()) {
                     1 -> hinterhalt(drache)
                     2 -> critHit(drache)
                     3 -> glühendeKlinge(drache)
@@ -194,20 +202,20 @@ class Schurke(
 
     }
 
-    private fun chooseAktion() {
-        println("Wähle eine Aktion")
-        Thread.sleep(400)
-        println("1 für Hinterhalt")
-        Thread.sleep(400)
-        println("2 für Kritischer Treffer")
-        Thread.sleep(400)
-        println("3 für Glühende Klinge")
-        Thread.sleep(400)
-        println("4 für Dolchhieb")
-        Thread.sleep(400)
-        println("5 um den Beutel zu benutzen")
-        println("__ __ __ __ __ __ __ ")
-    }
+//    private fun chooseAktion() {
+//        println("Wähle eine Aktion")
+//        Thread.sleep(400)
+//        println("1 für Hinterhalt")
+//        Thread.sleep(400)
+//        println("2 für Kritischer Treffer")
+//        Thread.sleep(400)
+//        println("3 für Glühende Klinge")
+//        Thread.sleep(400)
+//        println("4 für Dolchhieb")
+//        Thread.sleep(400)
+//        println("5 um den Beutel zu benutzen")
+//        println("__ __ __ __ __ __ __ ")
+//    }
 
     fun tot() {
         besiegt = true
